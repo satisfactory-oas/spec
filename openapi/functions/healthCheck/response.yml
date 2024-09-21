@@ -1,0 +1,19 @@
+oneOf:
+- allOf:
+  - $ref: ..\..\components\schemas\success.yml
+  - type: object
+    properties:
+      data:
+        properties:
+          health:
+            type: string
+            enum:
+            - healthy
+            - slow
+            description: healthy if tick rate is above ten ticks per second, slow otherwise
+          serverCustomData:
+            type: string
+            description: Custom Data passed from the Dedicated Server to the Game Client or Third Party service. Vanilla Dedicated Server returns empty string
+        required:
+        - health
+- $ref: ..\..\components\schemas\error.yml

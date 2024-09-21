@@ -1,0 +1,14 @@
+{
+  "name": "satisfactory-oas-spec",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "openapi preview-docs",
+    "build": "openapi bundle -o dist/satisfactory-oas.yaml && openapi build-docs dist/satisfactory-oas.yaml -o dist/satisfactory-oas.html",
+    "test": "openapi lint",
+    "ignore-file": "openapi lint --generate-ignore-file"
+  },
+  "dependencies": {
+    "@redocly/cli": "^1.25.3"
+  }
+}

@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: Satisfactory Game Server HTTPS API specification
+  description: Satisfactory Game Server HTTPS API specification
+  version: 0.0.0-replace
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+- url: 'https://game-server-ip:7777'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  '/api/v1/?function=HealthCheck':
+    $ref: functions\healthCheck\path.yml
+
+  '/api/v1/?function=VerifyAuthenticationToken':
+    $ref: functions\verifyAuthenticationToken\path.yml

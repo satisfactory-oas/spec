@@ -1,0 +1,19 @@
+post:
+  summary: Health Check
+  operationId: HealthCheck
+  description: Performs a health check on the Dedicated Server API. Allows passing additional data between Modded Dedicated Server and Modded Game Client. This function requires no Authentication.
+  security:
+  - {}
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: request.yml
+    required: true
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: response.yml

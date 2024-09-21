@@ -1,0 +1,9 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute. Names of the API functions and their behavior are described below
+    const: 'VerifyAuthenticationToken'
+required:
+- function
+

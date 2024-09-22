@@ -1,0 +1,74 @@
+oneOf:
+- type: object
+  title: success
+  properties:
+    data:
+      type: object
+      description: Data returned by the function executed. Type depends on the function the request performed
+      properties:
+        serverGameState:
+          type: object
+          description: Current game state of the server
+          properties:
+            activeSessionName:
+              type: string
+              description: Name of the currently loaded game session
+              example: SERVER-SESSION26924571
+            numConnectedPlayers:
+              type: integer
+              description: Number of the players currently connected to the Dedicated Server
+              example: 0
+            playerLimit:
+              type: integer
+              description: Maximum number of players that can be connected to the Dedicated Server
+              example: 4
+            techTier:
+              type: integer
+              description: Maximum Tech Tier of all Schematics currently unlocked
+              example: 0
+            activeSchematic:
+              type: string
+              description: Schematic currently set as Active Milestone
+              example: None
+            gamePhase:
+              type: string
+              description: Current game phase. None if no game is running
+              example: None
+            isGameRunning:
+              type: boolean
+              description: True if the save is currently loaded, false if the server is waiting for the session to be created
+              example: false
+            totalGameDuration:
+              type: integer
+              description: Total time the current save has been loaded, in seconds
+              example: 0
+            isGamePaused:
+              type: boolean
+              description: True if the game is paused. If the game is paused, total game duration does not increase
+              example: false
+            averageTickRate:
+              type: number
+              description: Average tick rate of the server, in ticks per second
+              format: float
+              example: 29.89044189453125
+            autoLoadSessionName:
+              type: string
+              description: Name of the session that will be loaded when the server starts automatically
+              example: SERVER-SESSION26924571
+          required:
+          - activeSessionName
+          - numConnectedPlayers
+          - playerLimit
+          - techTier
+          - activeSchematic
+          - gamePhase
+          - isGameRunning
+          - totalGameDuration
+          - isGamePaused
+          - averageTickRate
+          - autoLoadSessionName
+      required:
+      - serverGameState
+  required:
+  - data
+- $ref: ..\..\components\schemas\error.yml

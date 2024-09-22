@@ -16,4 +16,6 @@ oneOf:
           description: Custom Data passed from the Dedicated Server to the Game Client or Third Party service. Vanilla Dedicated Server returns empty string
       required:
       - health
+  required:
+  - data
 - $ref: ..\..\components\schemas\error.yml

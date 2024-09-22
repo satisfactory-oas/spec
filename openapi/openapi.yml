@@ -26,3 +26,9 @@ paths:
 
   '/api/v1/?function=PasswordlessLogin':
     $ref: functions\passwordlessLogin\PasswordlessLogin.yml
+
+  '/api/v1/?function=PasswordLogin':
+    $ref: functions\passwordLogin\passwordLogin.yml
+
+  '/api/v1/?function=QueryServerState':
+    $ref: functions\queryServerState\queryServerState.yml

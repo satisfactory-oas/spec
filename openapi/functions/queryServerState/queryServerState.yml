@@ -1,0 +1,26 @@
+post:
+  summary: Query Server State
+  operationId: QueryServerState
+  description: |
+    Retrieves the current state of the Dedicated Server. Does not require any input parameters.
+  security:
+  - bearerAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: queryServerStateRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: queryServerStateResponse.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

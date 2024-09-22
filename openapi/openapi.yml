@@ -8,7 +8,7 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-- url: 'https://game-server-ip:7777'
+- url: 'https://localhost:7777'
 
 components:
   securitySchemes:
@@ -19,7 +19,7 @@ components:
 
 paths:
   '/api/v1/?function=HealthCheck':
-    $ref: functions\healthCheck\path.yml
+    $ref: functions\healthCheck\healthCheck.yml
 
   '/api/v1/?function=VerifyAuthenticationToken':
-    $ref: functions\verifyAuthenticationToken\path.yml
+    $ref: functions\verifyAuthenticationToken\verifyAuthenticationToken.yml

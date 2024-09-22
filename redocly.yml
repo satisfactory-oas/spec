@@ -1,12 +1,13 @@
 # See https://docs.redoc.ly/cli/configuration/ for more information.
 apis:
   main@v1:
-    root: openapi/openapi.yaml
+    root: openapi/openapi.yml
 extends:
 - recommended
 rules:
   path-not-include-query: 'off'
   operation-4xx-response: 'off'
+  no-server-example.com: 'off'
 theme:
   openapi:
     htmlTemplate: ./docs/index.html

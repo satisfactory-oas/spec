@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: request.yml
+          $ref: healthCheckRequest.yml
     required: true
   responses:
     '200':
@@ -16,4 +16,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: response.yml
+            $ref: healthCheckResponse.yml

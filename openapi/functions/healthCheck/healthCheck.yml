@@ -17,3 +17,6 @@ post:
         application/json:
           schema:
             $ref: healthCheckResponse.yml
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml

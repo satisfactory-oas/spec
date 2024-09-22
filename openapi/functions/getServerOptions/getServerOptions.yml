@@ -1,15 +1,15 @@
 post:
-  summary: Query Server State
-  operationId: QueryServerState
+  summary: Get Server Options
+  operationId: GetServerOptions
   description: |
-    Retrieves the current state of the Dedicated Server. Does not require any input parameters.
+    Retrieves currently applied server options and server options that are still pending application (because of needing session or server restart) Does not require input parameters.
   security:
   - bearerAuth: []
   requestBody:
     content:
       application/json:
         schema:
-          $ref: queryServerStateRequest.yml
+          $ref: getServerOptionsRequest.yml
     required: true
   responses:
     '200':
@@ -17,7 +17,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: queryServerStateResponse.yml
+            $ref: getServerOptionsResponse.yml
     '400':
       description: Bad request
       $ref: ..\..\components\responses\error.yml

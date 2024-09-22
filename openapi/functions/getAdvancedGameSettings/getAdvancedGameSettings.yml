@@ -1,15 +1,15 @@
 post:
-  summary: Query Server State
-  operationId: QueryServerState
+  summary: Get Advanced Game Settings
+  operationId: GetAdvancedGameSettings
   description: |
-    Retrieves the current state of the Dedicated Server. Does not require any input parameters.
+    Retrieves currently applied advanced game settings. Does not require input parameters.
   security:
   - bearerAuth: []
   requestBody:
     content:
       application/json:
         schema:
-          $ref: queryServerStateRequest.yml
+          $ref: getAdvancedGameSettingsRequest.yml
     required: true
   responses:
     '200':
@@ -17,7 +17,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: queryServerStateResponse.yml
+            $ref: getAdvancedGameSettingsResponse.yml
     '400':
       description: Bad request
       $ref: ..\..\components\responses\error.yml

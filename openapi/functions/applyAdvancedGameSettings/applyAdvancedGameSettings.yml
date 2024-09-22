@@ -1,0 +1,28 @@
+post:
+  summary: Apply Advanced Game Settings
+  operationId: ApplyAdvancedGameSettings
+  description: |
+    Applies new values to the provided Advanced Game Settings properties. Will automatically enable Advanced Game Settings for the currently loaded save if they are not enabled already.
+  security:
+  - bearerAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: applyAdvancedGameSettingsRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Succesfully applied advanced game settings
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

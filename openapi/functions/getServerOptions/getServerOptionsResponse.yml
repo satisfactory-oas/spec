@@ -1,0 +1,33 @@
+oneOf:
+- type: object
+  title: success
+  properties:
+    data:
+      type: object
+      description: Data returned by the function executed. Type depends on the function the request performed
+      properties:
+        serverOptions:
+          type: object
+          description: All current server option values, where keys are the option names and values are their stringified values.
+          additionalProperties:
+            type: string
+          example:
+            FG.DSAutoPause: "True"
+            FG.DSAutoSaveOnDisconnect: "True"
+            FG.DisableSeasonalEvents: "False"
+            FG.AutosaveInterval: "300.0"
+            FG.ServerRestartTimeSlot: "1440.0"
+            FG.SendGameplayData: "True"
+            FG.NetworkQuality: "1"
+        pendingServerOptions:
+          type: object
+          description: Server option values that will be applied when the session or server restarts, where keys are the option names and values are their stringified values.
+          additionalProperties:
+            type: string
+          example: {}
+      required:
+      - serverOptions
+      - pendingServerOptions
+  required:
+  - data
+- $ref: ..\..\components\schemas\error.yml

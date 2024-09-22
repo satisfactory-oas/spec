@@ -18,17 +18,34 @@ components:
       bearerFormat: JWT
 
 paths:
+  # HealthCheck
   '/api/v1/?function=HealthCheck':
     $ref: functions\healthCheck\healthCheck.yml
 
+  # VerifyAuthenticationToken
   '/api/v1/?function=VerifyAuthenticationToken':
     $ref: functions\verifyAuthenticationToken\verifyAuthenticationToken.yml
 
+  # PasswordlessLogin
   '/api/v1/?function=PasswordlessLogin':
     $ref: functions\passwordlessLogin\PasswordlessLogin.yml
 
+  # PasswordLogin
   '/api/v1/?function=PasswordLogin':
     $ref: functions\passwordLogin\passwordLogin.yml
 
+  # QueryServerState
   '/api/v1/?function=QueryServerState':
     $ref: functions\queryServerState\queryServerState.yml
+
+  # GetServerOptions
+  '/api/v1/?function=GetServerOptions':
+    $ref: functions\getServerOptions\getServerOptions.yml
+
+  # GetAdvancedGameSettings
+  '/api/v1/?function=GetAdvancedGameSettings':
+    $ref: functions\getAdvancedGameSettings\getAdvancedGameSettings.yml
+
+  # ApplyAdvancedGameSettings
+  '/api/v1/?function=ApplyAdvancedGameSettings':
+    $ref: functions\applyAdvancedGameSettings\applyAdvancedGameSettings.yml

@@ -12,7 +12,10 @@ post:
     required: true
   responses:
     '204':
-      description: Created
+      description: No Content - Authentication token is still valid
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
     '401':
       description: Unauthorized
       $ref: ..\..\components\responses\error.yml

@@ -1,7 +1,9 @@
 oneOf:
 - type: object
+  title: success
   properties:
     data:
+      type: object
       properties:
         health:
           type: string

@@ -23,3 +23,6 @@ paths:
 
   '/api/v1/?function=VerifyAuthenticationToken':
     $ref: functions\verifyAuthenticationToken\verifyAuthenticationToken.yml
+
+  '/api/v1/?function=PasswordlessLogin':
+    $ref: functions\passwordlessLogin\PasswordlessLogin.yml

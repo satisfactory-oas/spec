@@ -3,14 +3,7 @@ post:
   operationId: VerifyAuthenticationToken
   description: Verifies the Authentication token provided to the Dedicated Server API. Returns No Content if the provided token is valid. This function does not require input parameters and does not return any data.
   security:
-  - {}
-  parameters:
-  - in: header
-    name: Authorization
-    example: 'Authorization: Bearer <token>'
-    required: true
-    schema:
-      type: string
+  - bearerAuth: []
   requestBody:
     content:
       application/json:
@@ -18,7 +11,7 @@ post:
           $ref: verifyAuthenticationTokenRequest.yml
     required: true
   responses:
-    '201':
+    '204':
       description: Created
     '401':
       description: Unauthorized

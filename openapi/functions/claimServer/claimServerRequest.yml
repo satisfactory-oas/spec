@@ -3,8 +3,8 @@ properties:
   function:
     type: string
     description: Name of the API function to execute.
-    const: ApplyAdvancedGameSettings
-    default: ApplyAdvancedGameSettings
+    const: ClaimServer
+    default: ClaimServer
   data:
     type: object
     description: Data to pass to the function to execute. Format of the object depends on the function being executed

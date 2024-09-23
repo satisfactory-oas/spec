@@ -16,7 +16,7 @@ post:
       description: Ok - Error
       $ref: ..\..\components\responses\error.yml
     '204':
-      description: No Content - Succesfully applied advanced game settings
+      description: No Content - Success
     '400':
       description: Bad request
       $ref: ..\..\components\responses\error.yml

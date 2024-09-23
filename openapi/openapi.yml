@@ -49,3 +49,7 @@ paths:
   # ApplyAdvancedGameSettings
   '/api/v1/?function=ApplyAdvancedGameSettings':
     $ref: functions\applyAdvancedGameSettings\applyAdvancedGameSettings.yml
+
+  # ClaimServer
+  '/api/v1/?function=ClaimServer':
+    $ref: functions\claimServer\claimServer.yml

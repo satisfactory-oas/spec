@@ -73,3 +73,7 @@ paths:
   # RunCommand
   '/api/v1/?function=RunCommand':
     $ref: functions\runCommand\runCommand.yml
+
+  # Shutdown
+  '/api/v1/?function=Shutdown':
+    $ref: functions\shutdown\shutdown.yml

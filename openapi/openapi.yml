@@ -61,3 +61,7 @@ paths:
   # SetClientPassword
   '/api/v1/?function=SetClientPassword':
     $ref: functions\setClientPassword\setClientPassword.yml
+
+  # SetAdminPassword
+  '/api/v1/?function=SetAdminPassword':
+    $ref: functions\setAdminPassword\setAdminPassword.yml

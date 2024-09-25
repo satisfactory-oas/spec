@@ -53,3 +53,7 @@ paths:
   # ClaimServer
   '/api/v1/?function=ClaimServer':
     $ref: functions\claimServer\claimServer.yml
+
+  # RenameServer
+  '/api/v1/?function=RenameServer':
+    $ref: functions\renameServer\renameServer.yml

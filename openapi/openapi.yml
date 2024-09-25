@@ -57,3 +57,7 @@ paths:
   # RenameServer
   '/api/v1/?function=RenameServer':
     $ref: functions\renameServer\renameServer.yml
+
+  # SetClientPassword
+  '/api/v1/?function=SetClientPassword':
+    $ref: functions\setClientPassword\setClientPassword.yml

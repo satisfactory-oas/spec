@@ -65,3 +65,7 @@ paths:
   # SetAdminPassword
   '/api/v1/?function=SetAdminPassword':
     $ref: functions\setAdminPassword\setAdminPassword.yml
+
+  # SetAutoLoadSessionName
+  '/api/v1/?function=SetAutoLoadSessionName':
+    $ref: functions\setAutoLoadSessionName\setAutoLoadSessionName.yml

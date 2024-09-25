@@ -69,3 +69,7 @@ paths:
   # SetAutoLoadSessionName
   '/api/v1/?function=SetAutoLoadSessionName':
     $ref: functions\setAutoLoadSessionName\setAutoLoadSessionName.yml
+
+  # RunCommand
+  '/api/v1/?function=RunCommand':
+    $ref: functions\runCommand\runCommand.yml

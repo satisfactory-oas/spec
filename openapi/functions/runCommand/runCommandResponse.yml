@@ -1,0 +1,16 @@
+oneOf:
+- type: object
+  title: success
+  properties:
+    data:
+      type: object
+      description: Data returned by the function executed. Type depends on the function the request performed
+      properties:
+        commandResult:
+          type: string
+          description: Output of the command executed, with \n used as line separator
+      required:
+      - commandResult
+  required:
+  - data
+- $ref: ..\..\components\schemas\error.yml

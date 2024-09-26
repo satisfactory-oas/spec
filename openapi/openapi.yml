@@ -77,3 +77,11 @@ paths:
   # Shutdown
   '/api/v1/?function=Shutdown':
     $ref: functions\shutdown\shutdown.yml
+
+  # ApplyServerOptions
+  '/api/v1/?function=ApplyServerOptions':
+    $ref: functions\applyServerOptions\applyServerOptions.yml
+
+  # CreateNewGame
+  '/api/v1/?function=CreateNewGame':
+    $ref: functions\createNewGame\createNewGame.yml

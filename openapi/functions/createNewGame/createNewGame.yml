@@ -1,22 +1,22 @@
 post:
-  summary: Shutdown
-  operationId: Shutdown
+  summary: Create New Game
+  operationId: CreateNewGame
   description: |
-    Shuts down the Dedicated Server. If automatic restart script is setup, this allows restarting the server to apply new settings or update. Requires Admin privileges. Shutdowns initiated by remote hosts are logged with their IP and their token. Function does not return any data on success, and does not take any parameters.
+    Creates a new session on the Dedicated Server, and immediately loads it. HTTPS API becomes temporarily unavailable when map loading is in progress | Function does not return any data on success.
   security:
-  - bearerAuth: ['Administrator']
+  - bearerAuth: []
   requestBody:
     content:
       application/json:
         schema:
-          $ref: shutdownRequest.yml
+          $ref: createNewGameRequest.yml
     required: true
   responses:
     '200':
       description: Ok - Error
       $ref: ..\..\components\responses\error.yml
-    '204':
-      description: No Content - Success
+    '202':
+      description: Accepted - Success
     '400':
       description: Bad request
       $ref: ..\..\components\responses\error.yml

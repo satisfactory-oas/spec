@@ -4,7 +4,7 @@ post:
   description: |
     Updates the name of the session that the Dedicated Server will automatically load on startup. Does not change currently loaded session. Requires Admin privileges. Function does not return any data on success.
   security:
-  - bearerAuth: []
+  - bearerAuth: ['Administrator']
   requestBody:
     content:
       application/json:

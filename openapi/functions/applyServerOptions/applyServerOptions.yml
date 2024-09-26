@@ -1,15 +1,15 @@
 post:
-  summary: Shutdown
-  operationId: Shutdown
+  summary: Apply Server Options
+  operationId: ApplyServerOptions
   description: |
-    Shuts down the Dedicated Server. If automatic restart script is setup, this allows restarting the server to apply new settings or update. Requires Admin privileges. Shutdowns initiated by remote hosts are logged with their IP and their token. Function does not return any data on success, and does not take any parameters.
+    Applies new Server Options to the Dedicated Server. Requires Admin privileges.
   security:
   - bearerAuth: ['Administrator']
   requestBody:
     content:
       application/json:
         schema:
-          $ref: shutdownRequest.yml
+          $ref: applyServerOptionsRequest.yml
     required: true
   responses:
     '200':

@@ -85,3 +85,11 @@ paths:
   # CreateNewGame
   '/api/v1/?function=CreateNewGame':
     $ref: functions\createNewGame\createNewGame.yml
+
+  # SaveGame
+  '/api/v1/?function=SaveGame':
+    $ref: functions\saveGame\saveGame.yml
+
+  # DeleteSaveFile
+  '/api/v1/?function=DeleteSaveFile':
+    $ref: functions\deleteSaveFile\deleteSaveFile.yml

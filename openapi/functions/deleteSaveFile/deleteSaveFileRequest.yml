@@ -1,0 +1,19 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: DeleteSaveFile
+    default: DeleteSaveFile
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      saveName:
+        type: string
+        description: Name of the save game file to delete. Passed name might be sanitized
+    required:
+    - saveName
+required:
+- function
+- data

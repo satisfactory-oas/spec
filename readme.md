@@ -8,6 +8,8 @@ An OpenAPI (OAS) 3.1 specification implementation for the Satisfactory Server HT
 ## Getting started
 Currently, you can find versions of the specification at https://github.com/satisfactory-oas/spec/releases
 
+[Redocly documentation](https://redocly.com) is also available in the html file, `satisfactory-api-redoc.html` , which is included in current releases
+
 ## Plans
 - Publishing the spec to GitHub Pages on an organization-level
 - Docusaurus based OpenAPI-generated documentation

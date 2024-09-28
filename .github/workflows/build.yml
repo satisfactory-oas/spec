@@ -12,6 +12,8 @@ jobs:
   build-spec:
     name: Build - Spec
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout

@@ -18,7 +18,7 @@ jobs:
         fetch-depth: 0
 
     - name: Setup - GitVersion
-      uses: gittools/actions/gitversion/setup@v3
+      uses: gittools/actions/gitversion/setup@v3.0
       with:
         versionSpec: 6.0.0
 
@@ -29,10 +29,10 @@ jobs:
 
     - name: Generate - Version
       id: gitversion
-      uses: gittools/actions/gitversion/execute@v1
+      uses: gittools/actions/gitversion/execute@v3.0
       with:
         useConfigFile: true
-        configFilePath: "GitVersion.yml"
+        configFilePath: 'GitVersion.yml'
 
     - name: Replace - Version
       run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.legacySemVerPadded }}/g' openapi/openapi.yml

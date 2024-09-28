@@ -38,7 +38,7 @@ jobs:
       uses: gittools/actions/gitversion/execute@v3.0
       with:
         useConfigFile: true
-        configFilePath: 'GitVersion.yml'
+        configFilePath: GitVersion.yml
 
     - name: Replace - Version
       run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.legacySemVerPadded }}/g' openapi/openapi.yml

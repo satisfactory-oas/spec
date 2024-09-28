@@ -37,6 +37,7 @@ properties:
             description: Custom Options to pass to the newly created session URL. Not used by vanilla Dedicated Servers
             additionalProperties:
               type: string
+            example: {}
         required:
         - sessionName
         - mapName

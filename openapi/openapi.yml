@@ -105,3 +105,11 @@ paths:
   # LoadGame
   '/api/v1/?function=LoadGame':
     $ref: functions\loadGame\loadGame.yml
+
+  # UploadSaveGame
+  '/api/v1/?function=UploadSaveGame':
+    $ref: functions\uploadSaveGame\uploadSaveGame.yml
+
+  # DownloadSaveGame
+  '/api/v1/?function=DownloadSaveGame':
+    $ref: functions\downloadSaveGame\downloadSaveGame.yml

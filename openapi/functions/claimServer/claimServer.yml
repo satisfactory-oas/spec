@@ -20,10 +20,10 @@ post:
             $ref: claimServerResponse.yml
     '400':
       description: Bad request
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '401':
       description: Unauthorized
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '403':
       description: Forbidden
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml

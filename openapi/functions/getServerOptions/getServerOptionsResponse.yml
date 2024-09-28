@@ -7,13 +7,13 @@ oneOf:
       description: Data returned by the function executed. Type depends on the function the request performed
       properties:
         serverOptions:
-          $ref: ..\..\components\schemas\serverOptions.yml
+          $ref: ../../components/schemas/serverOptions.yml
         pendingServerOptions:
           description: Server option values that will be applied when the session or server restarts, where keys are the option names and values are their stringified values.
-          $ref: ..\..\components\schemas\serverOptions.yml
+          $ref: ../../components/schemas/serverOptions.yml
       required:
       - serverOptions
       - pendingServerOptions
   required:
   - data
-- $ref: ..\..\components\schemas\error.yml
+- $ref: ../../components/schemas/error.yml

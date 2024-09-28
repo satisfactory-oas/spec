@@ -15,10 +15,10 @@ post:
       description: No Content - Authentication token is still valid
     '400':
       description: Bad request
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '401':
       description: Unauthorized
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '403':
       description: Forbidden
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml

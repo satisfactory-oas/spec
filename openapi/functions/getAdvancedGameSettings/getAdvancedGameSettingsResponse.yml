@@ -5,7 +5,7 @@ oneOf:
     data:
       type: object
       description: Data returned by the function executed. Type depends on the function the request performed
-      $ref: ..\..\components\schemas\advancedGameSettings.yml
+      $ref: ../../components/schemas/advancedGameSettings.yml
   required:
   - data
-- $ref: ..\..\components\schemas\error.yml
+- $ref: ../../components/schemas/error.yml

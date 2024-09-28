@@ -20,96 +20,96 @@ components:
 paths:
   # HealthCheck
   '/api/v1/?function=HealthCheck':
-    $ref: functions\healthCheck\healthCheck.yml
+    $ref: functions/healthCheck/healthCheck.yml
 
   # VerifyAuthenticationToken
   '/api/v1/?function=VerifyAuthenticationToken':
-    $ref: functions\verifyAuthenticationToken\verifyAuthenticationToken.yml
+    $ref: functions/verifyAuthenticationToken/verifyAuthenticationToken.yml
 
   # PasswordlessLogin
   '/api/v1/?function=PasswordlessLogin':
-    $ref: functions\passwordlessLogin\PasswordlessLogin.yml
+    $ref: functions/passwordlessLogin/passwordlessLogin.yml
 
   # PasswordLogin
   '/api/v1/?function=PasswordLogin':
-    $ref: functions\passwordLogin\passwordLogin.yml
+    $ref: functions/passwordLogin/passwordLogin.yml
 
   # QueryServerState
   '/api/v1/?function=QueryServerState':
-    $ref: functions\queryServerState\queryServerState.yml
+    $ref: functions/queryServerState/queryServerState.yml
 
   # GetServerOptions
   '/api/v1/?function=GetServerOptions':
-    $ref: functions\getServerOptions\getServerOptions.yml
+    $ref: functions/getServerOptions/getServerOptions.yml
 
   # GetAdvancedGameSettings
   '/api/v1/?function=GetAdvancedGameSettings':
-    $ref: functions\getAdvancedGameSettings\getAdvancedGameSettings.yml
+    $ref: functions/getAdvancedGameSettings/getAdvancedGameSettings.yml
 
   # ApplyAdvancedGameSettings
   '/api/v1/?function=ApplyAdvancedGameSettings':
-    $ref: functions\applyAdvancedGameSettings\applyAdvancedGameSettings.yml
+    $ref: functions/applyAdvancedGameSettings/applyAdvancedGameSettings.yml
 
   # ClaimServer
   '/api/v1/?function=ClaimServer':
-    $ref: functions\claimServer\claimServer.yml
+    $ref: functions/claimServer/claimServer.yml
 
   # RenameServer
   '/api/v1/?function=RenameServer':
-    $ref: functions\renameServer\renameServer.yml
+    $ref: functions/renameServer/renameServer.yml
 
   # SetClientPassword
   '/api/v1/?function=SetClientPassword':
-    $ref: functions\setClientPassword\setClientPassword.yml
+    $ref: functions/setClientPassword/setClientPassword.yml
 
   # SetAdminPassword
   '/api/v1/?function=SetAdminPassword':
-    $ref: functions\setAdminPassword\setAdminPassword.yml
+    $ref: functions/setAdminPassword/setAdminPassword.yml
 
   # SetAutoLoadSessionName
   '/api/v1/?function=SetAutoLoadSessionName':
-    $ref: functions\setAutoLoadSessionName\setAutoLoadSessionName.yml
+    $ref: functions/setAutoLoadSessionName/setAutoLoadSessionName.yml
 
   # RunCommand
   '/api/v1/?function=RunCommand':
-    $ref: functions\runCommand\runCommand.yml
+    $ref: functions/runCommand/runCommand.yml
 
   # Shutdown
   '/api/v1/?function=Shutdown':
-    $ref: functions\shutdown\shutdown.yml
+    $ref: functions/shutdown/shutdown.yml
 
   # ApplyServerOptions
   '/api/v1/?function=ApplyServerOptions':
-    $ref: functions\applyServerOptions\applyServerOptions.yml
+    $ref: functions/applyServerOptions/applyServerOptions.yml
 
   # CreateNewGame
   '/api/v1/?function=CreateNewGame':
-    $ref: functions\createNewGame\createNewGame.yml
+    $ref: functions/createNewGame/createNewGame.yml
 
   # SaveGame
   '/api/v1/?function=SaveGame':
-    $ref: functions\saveGame\saveGame.yml
+    $ref: functions/saveGame/saveGame.yml
 
   # DeleteSaveFile
   '/api/v1/?function=DeleteSaveFile':
-    $ref: functions\deleteSaveFile\deleteSaveFile.yml
+    $ref: functions/deleteSaveFile/deleteSaveFile.yml
 
   # DeleteSaveSession
   '/api/v1/?function=DeleteSaveSession':
-    $ref: functions\deleteSaveSession\deleteSaveSession.yml
+    $ref: functions/deleteSaveSession/deleteSaveSession.yml
 
   # EnumerateSessions
   '/api/v1/?function=EnumerateSessions':
-    $ref: functions\enumerateSessions\enumerateSessions.yml
+    $ref: functions/enumerateSessions/enumerateSessions.yml
 
   # LoadGame
   '/api/v1/?function=LoadGame':
-    $ref: functions\loadGame\loadGame.yml
+    $ref: functions/loadGame/loadGame.yml
 
   # UploadSaveGame
   '/api/v1/?function=UploadSaveGame':
-    $ref: functions\uploadSaveGame\uploadSaveGame.yml
+    $ref: functions/uploadSaveGame/uploadSaveGame.yml
 
   # DownloadSaveGame
   '/api/v1/?function=DownloadSaveGame':
-    $ref: functions\downloadSaveGame\downloadSaveGame.yml
+    $ref: functions/downloadSaveGame/downloadSaveGame.yml

@@ -8,9 +8,9 @@ oneOf:
       properties:
         commandResult:
           type: string
-          description: Output of the command executed, with \n used as line separator
+          description: Output of the command executed, with /n used as line separator
       required:
       - commandResult
   required:
   - data
-- $ref: ..\..\components\schemas\error.yml
+- $ref: ../../components/schemas/error.yml

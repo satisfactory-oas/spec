@@ -71,4 +71,4 @@ oneOf:
       - serverGameState
   required:
   - data
-- $ref: ..\..\components\schemas\error.yml
+- $ref: ../../components/schemas/error.yml

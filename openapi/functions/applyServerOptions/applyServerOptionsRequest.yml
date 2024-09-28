@@ -11,7 +11,7 @@ properties:
     properties:
       updatedServerOptions:
         description: Key is the name of the Server Option, and the Value is the new value as string
-        $ref: ..\..\components\schemas\serverOptions.yml
+        $ref: ../../components/schemas/serverOptions.yml
     required:
     - updatedServerOptions
 required:

@@ -8,7 +8,7 @@ properties:
   data:
     type: object
     description: Data to pass to the function to execute. Format of the object depends on the function being executed
-    $ref: ..\..\components\schemas\advancedGameSettings.yml
+    $ref: ../../components/schemas/advancedGameSettings.yml
 required:
 - function
 - data

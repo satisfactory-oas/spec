@@ -14,15 +14,15 @@ post:
   responses:
     '200':
       description: Ok - Error
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '202':
       description: Accepted - Success
     '400':
       description: Bad request
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '401':
       description: Unauthorized
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml
     '403':
       description: Forbidden
-      $ref: ..\..\components\responses\error.yml
+      $ref: ../../components/responses/error.yml

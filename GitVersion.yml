@@ -1,0 +1,10 @@
+mode: ContinuousDelivery
+branches:
+  main:
+    mode: ContinuousDeployment
+    tag: preview
+    track-merge-target: true
+ignore:
+  sha: []
+merge-message-formats: {}
+tag-prefix: 'v'

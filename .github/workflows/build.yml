@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  release:
 
 jobs:
   build-spec:
@@ -57,3 +58,12 @@ jobs:
       with:
         name: spec
         path: dist
+
+    - name: Release - Upload assets
+      uses: softprops/action-gh-release@v2
+      if: ${{ github.event_name == 'release' }}
+      with:
+        files: |
+          dist/*.html
+          dist/*.yaml
+          dist/*.yml

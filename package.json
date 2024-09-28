@@ -1,16 +1,13 @@
 {
-  "name": "satisfactory-oas-spec",
+  "name": "satisfactory-api-v1",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o dist/satisfactory-oas.yaml && openapi build-docs dist/satisfactory-oas.yaml -o dist/satisfactory-oas.html",
-    "test": "openapi lint",
-    "scalar": "openapi bundle -o dist/satisfactory-oas.yaml && openapi build-docs dist/satisfactory-oas.yaml -o dist/satisfactory-oas.html && scalar serve dist/satisfactory-oas.yaml"
+    "build": "openapi bundle -o dist/satisfactory-api-v1.yaml && openapi build-docs dist/satisfactory-api-v1.yaml -o dist/satisfactory-api-v1.html",
+    "test": "openapi lint"
   },
   "dependencies": {
-    "@redocly/cli": "^1.25.3",
-    "@scalar/cli": "^0.2.200",
-    "init": "^0.1.2"
+    "@redocly/cli": "^1.25.3"
   }
 }

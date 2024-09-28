@@ -1,0 +1,28 @@
+post:
+  summary: Load Game
+  operationId: LoadGame
+  description: |
+    Loads the save game file by name, optionally with Advanced Game Settings enabled. Requires Admin privileges. Dedicated Server HTTPS API will become temporarily unavailable when save game is being loaded. Function does not return any data on succcess.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: loadGameRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

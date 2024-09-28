@@ -93,3 +93,15 @@ paths:
   # DeleteSaveFile
   '/api/v1/?function=DeleteSaveFile':
     $ref: functions\deleteSaveFile\deleteSaveFile.yml
+
+  # DeleteSaveSession
+  '/api/v1/?function=DeleteSaveSession':
+    $ref: functions\deleteSaveSession\deleteSaveSession.yml
+
+  # EnumerateSessions
+  '/api/v1/?function=EnumerateSessions':
+    $ref: functions\enumerateSessions\enumerateSessions.yml
+
+  # LoadGame
+  '/api/v1/?function=LoadGame':
+    $ref: functions\loadGame\loadGame.yml

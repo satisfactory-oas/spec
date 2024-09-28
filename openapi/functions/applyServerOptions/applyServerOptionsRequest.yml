@@ -10,10 +10,8 @@ properties:
     description: Data to pass to the function to execute. Format of the object depends on the function being executed
     properties:
       updatedServerOptions:
-        type: object
         description: Key is the name of the Server Option, and the Value is the new value as string
-        additionalProperties:
-          type: string
+        $ref: ..\..\components\schemas\serverOptions.yml
     required:
     - updatedServerOptions
 required:

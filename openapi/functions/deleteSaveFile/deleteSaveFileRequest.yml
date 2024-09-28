@@ -12,6 +12,7 @@ properties:
       saveName:
         type: string
         description: Name of the save game file to delete. Passed name might be sanitized
+        example: Test Save 1
     required:
     - saveName
 required:

@@ -12,6 +12,7 @@ properties:
       serverName:
         type: string
         description: New name of the Dedicated Server
+        example: Not Test Server
     required:
     - serverName
 required:

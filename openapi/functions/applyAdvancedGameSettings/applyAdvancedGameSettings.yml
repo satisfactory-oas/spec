@@ -4,7 +4,7 @@ post:
   description: |
     Applies new values to the provided Advanced Game Settings properties. Will automatically enable Advanced Game Settings for the currently loaded save if they are not enabled already.
   security:
-  - bearerAuth: []
+  - bearerAuth: ['Administrator']
   requestBody:
     content:
       application/json:

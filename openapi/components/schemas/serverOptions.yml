@@ -1,0 +1,12 @@
+type: object
+description: All current server option values, where keys are the option names and values are their stringified values.
+additionalProperties:
+  type: string
+example:
+  FG.DSAutoPause: "True"
+  FG.DSAutoSaveOnDisconnect: "True"
+  FG.DisableSeasonalEvents: "False"
+  FG.AutosaveInterval: "300.0"
+  FG.ServerRestartTimeSlot: "1440.0"
+  FG.SendGameplayData: "True"
+  FG.NetworkQuality: "1"

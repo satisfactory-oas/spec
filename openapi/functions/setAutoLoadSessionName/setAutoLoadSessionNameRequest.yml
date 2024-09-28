@@ -12,6 +12,7 @@ properties:
       sessionName:
         type: string
         description: Name of the session to automatically load on Dedicated Server startup
+        example: Test
     required:
     - sessionName
 required:

@@ -16,7 +16,7 @@ properties:
           sessionName:
             type: string
             description: Name of the session to create
-            example: Satisfactory-OAS
+            example: Test
           mapName:
             type: string
             description: Path Name to the Map Package to use as a map. If not specified, default level

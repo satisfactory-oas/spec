@@ -1,0 +1,14 @@
+type: object
+properties:
+  sessionName:
+    type: string
+    description: Name of the save session
+    example: Test
+  saveHeaders:
+    type: array
+    description: All save game files belonging to this session
+    items:
+      $ref: saveHeader.yml
+required:
+- sessionName
+- saveHeaders

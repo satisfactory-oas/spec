@@ -28,7 +28,7 @@ paths:
 
   # PasswordlessLogin
   '/api/v1/?function=PasswordlessLogin':
-    $ref: functions/passwordlessLogin/PasswordlessLogin.yml
+    $ref: functions/passwordlessLogin/passwordlessLogin.yml
 
   # PasswordLogin
   '/api/v1/?function=PasswordLogin':

@@ -1,0 +1,20 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: DownloadSaveGame
+    default: DownloadSaveGame
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      saveName:
+        type: string
+        description: Name of the save game file to download from the Dedicated Server
+        example: Test Save 1
+    required:
+    - saveName
+required:
+- function
+- data

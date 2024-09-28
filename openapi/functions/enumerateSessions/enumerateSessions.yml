@@ -1,0 +1,29 @@
+post:
+  summary: Enumerate Sessions
+  operationId: EnumerateSessions
+  description: |
+    Enumerates all save game files available on the Dedicated Server. Requires Admin privileges. Function does not require any additional parameters.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: enumerateSessionsRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: enumerateSessionsResponse.yml
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

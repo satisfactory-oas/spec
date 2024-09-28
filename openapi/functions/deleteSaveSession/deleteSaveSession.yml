@@ -1,0 +1,28 @@
+post:
+  summary: Delete Save Session
+  operationId: DeleteSaveSession
+  description: |
+    Deletes all save files belonging to the specific session name. Requires Admin privileges. SessionName must be a valid session name with at least one saved save game file belonging to it. Function does not return any data on success.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: deleteSaveSessionRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

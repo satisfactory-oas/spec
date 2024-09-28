@@ -1,0 +1,14 @@
+type: object
+title: error
+properties:
+  errorCode:
+    type: string
+    description: Machine-friendly code indicating the type of the error that the executed function returned
+  errorMessage:
+    type: string
+    description: Optional. Human-friendly error message explaining the error
+  errorData:
+    type: object
+    description: Optional. Additional information about the error, for example, list of parameters that are missing
+required:
+- errorCode

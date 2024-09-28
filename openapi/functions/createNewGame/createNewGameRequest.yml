@@ -1,0 +1,50 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: CreateNewGame
+    default: CreateNewGame
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      newGameData:
+        type: object
+        description: Key is the name of the Server Option, and the Value is the new value as string
+        properties:
+          sessionName:
+            type: string
+            description: Name of the session to create
+            example: Test
+          mapName:
+            type: string
+            description: Path Name to the Map Package to use as a map. If not specified, default level
+            example: ""
+          startingLocation:
+            type: string
+            description: Name of the starting location to use. Leaving it empty will use random starting location
+            example: ""
+          bSkipOnboarding:
+            type: boolean
+            example: false
+            description: Whether the Onboarding should be skipped. Currently, Onboarding is always skipped on the Dedicated Servers. Currently SkipOnboarding must be set to bSkipOnboarding, due to an issue with the property names.
+          advancedGameSettings:
+            description: Advanced Game Settings to apply to the newly created session
+            $ref: ..\..\components\schemas\advancedGameSettings.yml
+          customOptionsOnlyForModding:
+            type: object
+            description: Custom Options to pass to the newly created session URL. Not used by vanilla Dedicated Servers
+            additionalProperties:
+              type: string
+            example: {}
+        required:
+        - sessionName
+        - mapName
+        - startingLocation
+        - bSkipOnboarding
+    required:
+    - newGameData
+required:
+- function
+- data

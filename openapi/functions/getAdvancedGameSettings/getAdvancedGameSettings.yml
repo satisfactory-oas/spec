@@ -1,0 +1,29 @@
+post:
+  summary: Get Advanced Game Settings
+  operationId: GetAdvancedGameSettings
+  description: |
+    Retrieves currently applied advanced game settings. Does not require input parameters.
+  security:
+  - bearerAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: getAdvancedGameSettingsRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: getAdvancedGameSettingsResponse.yml
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

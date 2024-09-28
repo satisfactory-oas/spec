@@ -1,0 +1,41 @@
+type: object
+properties:
+  data:
+    type: object
+    description: Standard Request Data body for this request, encoded as UTF-8 JSON. Note that this includes the envelope.
+    properties:
+      function:
+        type: string
+        description: Name of the API function to execute.
+        const: UploadSaveGame
+        default: UploadSaveGame
+      data:
+        type: object
+        description: Data to pass to the function to execute. Format of the object depends on the function being executed
+        properties:
+          saveName:
+            type: string
+            description: Name of the save game file to create on the Dedicated Server.
+            example: Uploaded Save
+          loadSaveGame:
+            type: boolean
+            description: True if the save game file should be immediately loaded by the Dedicated Server.
+            example: true
+          enableAdvancedGameSettings:
+            type: boolean
+            description: True if the save game file should be loaded with Advanced Game Settings enabled.
+            example: false
+        required:
+        - saveName
+        - loadSaveGame
+        - enableAdvancedGameSettings
+    required:
+    - function
+    - data
+  saveGameFile:
+    type: string
+    format: binary
+    description: File attachment containing the save game file. Contents of the file will be validated on the server.
+required:
+- data
+- saveGameFile

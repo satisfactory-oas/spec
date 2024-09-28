@@ -1,0 +1,62 @@
+type: object
+properties:
+  saveVersion:
+    type: integer
+    description: Version of the Save Game format this file was saved with
+    example: 46
+  buildVersion:
+    type: integer
+    description: Changelist of the game or dedicated server this file was saved by
+    example: 368883
+  saveName:
+    type: string
+    description: Name of the save game file in the filesystem
+    example: Test_autosave_0
+  saveLocationInfo:
+    type: string
+    description: Unknown - Not listed in official documentation
+    example: SLI_Server
+  mapName:
+    type: string
+    description: Path to the map package this save game file is based on
+    example: Persistent_Level
+  mapOptions:
+    type: string
+    description: Additional Map URL options this save game was saved with
+    example: '?skiponboarding'
+  sessionName:
+    type: string
+    description: Name of the session this save game file belongs to
+    example: Test
+  playDurationSeconds:
+    type: integer
+    description: Amount of seconds the game has been running for in total since the session was created
+    example: 30
+  saveDateTime:
+    type: string
+    description: Date and time on which the save game file was saved
+    example: '2024.09.28-04.00.32'
+  isModdedSave:
+    type: boolean
+    description: True if this save game file was saved with mods
+    example: false
+  isEditedSave:
+    type: boolean
+    description: True if this save game file has been edited by third party tools
+    example: false
+  isCreativeModeEnabled:
+    type: boolean
+    description: True if Advanced Game Settings are enabled for this save game
+    example: false
+required:
+- saveVersion
+- buildVersion
+- saveName
+- mapName
+- mapOptions
+- sessionName
+- playDurationSeconds
+- saveDateTime
+- isModdedSave
+- isEditedSave
+- isCreativeModeEnabled

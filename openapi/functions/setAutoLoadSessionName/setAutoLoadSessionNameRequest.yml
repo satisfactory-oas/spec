@@ -1,0 +1,20 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: SetAutoLoadSessionName
+    default: SetAutoLoadSessionName
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      sessionName:
+        type: string
+        description: Name of the session to automatically load on Dedicated Server startup
+        example: Test
+    required:
+    - sessionName
+required:
+- function
+- data

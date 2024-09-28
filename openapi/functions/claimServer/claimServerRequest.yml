@@ -1,0 +1,25 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: ClaimServer
+    default: ClaimServer
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      serverName:
+        type: string
+        description: New name of the Dedicated Server
+        example: Test Server
+      adminPassword:
+        type: string
+        description: Admin Password to set on the Dedicated Server, in plaintext
+        example: super-secret-password
+    required:
+    - serverName
+    - adminPassword
+required:
+- function
+- data

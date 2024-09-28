@@ -1,0 +1,28 @@
+post:
+  summary: Create New Game
+  operationId: CreateNewGame
+  description: |
+    Creates a new session on the Dedicated Server, and immediately loads it. HTTPS API becomes temporarily unavailable when map loading is in progress | Function does not return any data on success.
+  security:
+  - bearerAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: createNewGameRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '202':
+      description: Accepted - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

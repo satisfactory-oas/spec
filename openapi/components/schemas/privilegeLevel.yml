@@ -1,0 +1,14 @@
+type: string
+description: |
+  Privilege Level granted of a Authorization/Authentication token.
+  - `NotAuthenticated`: The client is not Authenticated
+  - `Client`: Client is Authenticated with Client privileges
+  - `Administrator`: Client is Authenticated with Admin privileges
+  - `InitialAdmin: Client is Authenticated as Initial Admin with privileges to Claim the server
+  - `APIToken`: Client is Authenticated as Third Party Application
+enum:
+- NotAuthenticated
+- Client
+- Administrator
+- InitialAdmin
+- APIToken

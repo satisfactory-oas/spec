@@ -1,0 +1,19 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: RunCommand
+    default: RunCommand
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      command:
+        type: string
+        description: Command Line to run on the Dedicated Server
+    required:
+    - command
+required:
+- function
+- data

@@ -1,0 +1,11 @@
+oneOf:
+- type: object
+  title: success
+  properties:
+    data:
+      type: object
+      description: Data returned by the function executed. Type depends on the function the request performed
+      $ref: ..\..\components\schemas\advancedGameSettings.yml
+  required:
+  - data
+- $ref: ..\..\components\schemas\error.yml

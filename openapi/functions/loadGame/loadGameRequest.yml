@@ -1,0 +1,25 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: LoadGame
+    default: LoadGame
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      saveName:
+        type: string
+        description: Name of the save game file to load
+        example: Test Save 1
+      enableAdvancedGameSettings:
+        type: boolean
+        description: True if save game file should be loaded with Advanced Game Settings enabled
+        example: false
+    required:
+    - saveName
+    - enableAdvancedGameSettings
+required:
+- function
+- data

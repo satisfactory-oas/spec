@@ -1,0 +1,5 @@
+description: Error
+content:
+  application/json:
+    schema:
+      $ref: ..\schemas\error.yml

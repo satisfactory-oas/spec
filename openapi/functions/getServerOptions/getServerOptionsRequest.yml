@@ -1,0 +1,9 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: GetServerOptions
+    default: GetServerOptions
+required:
+- function

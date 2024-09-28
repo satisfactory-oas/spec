@@ -1,0 +1,28 @@
+post:
+  summary: Run Command
+  operationId: RunCommand
+  description: |
+    Runs the given Console Command on the Dedicated Server, and returns it's output to the Console. Requires Admin privileges.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: runCommandRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

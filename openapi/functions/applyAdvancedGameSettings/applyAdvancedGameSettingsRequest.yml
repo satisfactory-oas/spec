@@ -1,0 +1,14 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: ApplyAdvancedGameSettings
+    default: ApplyAdvancedGameSettings
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    $ref: ..\..\components\schemas\advancedGameSettings.yml
+required:
+- function
+- data

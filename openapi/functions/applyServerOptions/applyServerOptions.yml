@@ -1,0 +1,28 @@
+post:
+  summary: Apply Server Options
+  operationId: ApplyServerOptions
+  description: |
+    Applies new Server Options to the Dedicated Server. Requires Admin privileges.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: applyServerOptionsRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

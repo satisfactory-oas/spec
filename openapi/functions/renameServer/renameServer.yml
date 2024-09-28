@@ -1,0 +1,28 @@
+post:
+  summary: Rename Server
+  operationId: RenameServer
+  description: |
+    Renames the Dedicated Server once it has been claimed. Requires Admin privileges. Function does not return any data on success.
+  security:
+  - bearerAuth: ['Administrator']
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: renameServerRequest.yml
+    required: true
+  responses:
+    '200':
+      description: Ok - Error
+      $ref: ..\..\components\responses\error.yml
+    '204':
+      description: No Content - Success
+    '400':
+      description: Bad request
+      $ref: ..\..\components\responses\error.yml
+    '401':
+      description: Unauthorized
+      $ref: ..\..\components\responses\error.yml
+    '403':
+      description: Forbidden
+      $ref: ..\..\components\responses\error.yml

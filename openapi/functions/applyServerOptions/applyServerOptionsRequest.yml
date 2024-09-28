@@ -1,0 +1,19 @@
+type: object
+properties:
+  function:
+    type: string
+    description: Name of the API function to execute.
+    const: ApplyServerOptions
+    default: ApplyServerOptions
+  data:
+    type: object
+    description: Data to pass to the function to execute. Format of the object depends on the function being executed
+    properties:
+      updatedServerOptions:
+        description: Key is the name of the Server Option, and the Value is the new value as string
+        $ref: ..\..\components\schemas\serverOptions.yml
+    required:
+    - updatedServerOptions
+required:
+- function
+- data

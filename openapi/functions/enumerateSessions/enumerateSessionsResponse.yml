@@ -1,0 +1,23 @@
+oneOf:
+- type: object
+  title: success
+  properties:
+    data:
+      type: object
+      description: Data returned by the function executed. Type depends on the function the request performed
+      properties:
+        sessions:
+          type: array
+          description: List of sessions available on the Dedicated Server
+          items:
+            $ref: ..\..\components\schemas\sessionSaveStruct.yml
+        currentSessionIndex:
+          type: integer
+          description: Index of the currently selected session in the list
+          example: 0
+      required:
+      - sessions
+      - currentSessionIndex
+  required:
+  - data
+- $ref: ..\..\components\schemas\error.yml

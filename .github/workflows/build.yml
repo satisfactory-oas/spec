@@ -40,8 +40,7 @@ jobs:
         configFilePath: "GitVersion.yml"
 
     - name: Replace - Version
-      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.legacySemVerPadded }}/g' openapi/openapi.yaml
-      working-directory: /
+      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.legacySemVerPadded }}/g' openapi/openapi.yml
 
     - name: Bun - Install
       run: bun install --frozen-lockfile

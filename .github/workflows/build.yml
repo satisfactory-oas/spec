@@ -101,6 +101,11 @@ jobs:
       with:
         name: spec
 
+    - name: Setup - Update branch Git User
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "satisfactory-oas@github.com"
+
     # Move all *.yaml, *.yml, *.json, and *.html files to /preview, mkdir if needed
     # git add the entire /preview folder
     # for every file added, do a git commit of "Update - <file-name>.json"

@@ -122,16 +122,7 @@ jobs:
 
         # Add the entire /preview folder to Git
         git add preview
-
-        # Loop through each file in the /preview directory and commit them
-        for file in preview/*; do
-          if [ -f "$file" ]; then
-            # Extract the filename without the path for the commit message
-            filename=$(basename "$file")
-            git commit -m "Update - ${filename}"
-            git push origin gh-pages
-          fi
-        done
+        git commit -m "Update - /preview"
 
     # git add all *.yaml, *.yml, *.json, and *.html files in the root dir
     # for every file added, do a git commit of "Update - <file-name>.json"
@@ -141,12 +132,7 @@ jobs:
         # Add all specified files in the root directory
         git add *.yaml *.yml *.json *.html
 
-        # Loop through each added file and commit them individually
-        for file in *.yaml *.yml *.json *.html; do
-          if [ -f "$file" ]; then
-            # Extract the filename without the path for the commit message
-            filename=$(basename "$file")
-            git commit -m "Update - ${filename}"
-            git push origin gh-pages
-          fi
-        done
+        git commit -m "Update - /"
+
+    - name: Push
+      run: git push origin gh-pages

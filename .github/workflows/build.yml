@@ -9,7 +9,7 @@ on:
     types: [published]
 
 jobs:
-  build-spec:
+  build:
     name: Build - Spec
     runs-on: ubuntu-latest
     permissions:
@@ -61,6 +61,8 @@ jobs:
       with:
         name: spec
         path: dist
+        retention-days: 90
+        if-no-files-found: error
 
     - name: Release - Upload assets
       uses: softprops/action-gh-release@v2
@@ -71,3 +73,81 @@ jobs:
           dist/*.yaml
           dist/*.yml
           dist/*.json
+
+  pages:
+    name: Pages - Update branch
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.ref_name == github.event.repository.default_branch || github.event_name == 'release' }}
+    permissions:
+      contents: write
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: pages
+
+    - name: Clean - /preview
+      if: ${{ github.ref_name == github.event.repository.default_branch }}
+      run: |
+        rm -rf /preview
+
+    - name: Clean - /
+      if: ${{ github.event_name == 'release' }}
+      run: |
+        rm -f ./*.{html,yaml,yml,json}
+
+    - name: Download - spec
+      uses: actions/download-artifact@v4
+      with:
+        name: spec
+
+    - name: Setup - Update branch Git User
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+
+    # Move all *.yaml, *.yml, *.json, and *.html files to /preview, mkdir if needed
+    # git add the entire /preview folder
+    # for every file added, do a git commit of "Update - <file-name>.json"
+    - name: Commit - /preview
+      if: ${{ github.ref_name == github.event.repository.default_branch }}
+      run: |
+        # Create the /preview directory if it doesn't exist
+        mkdir -p preview
+
+        # Move all specified files to the /preview directory
+        mv *.yaml *.yml *.json *.html preview/ 2>/dev/null || true
+
+        # Add the entire /preview folder to Git
+        git add preview
+
+        # Loop through each file in the /preview directory and commit them
+        for file in preview/*; do
+          if [ -f "$file" ]; then
+            # Extract the filename without the path for the commit message
+            filename=$(basename "$file")
+            git commit -m "Update - ${filename}"
+          fi
+        done
+
+    # git add all *.yaml, *.yml, *.json, and *.html files in the root dir
+    # for every file added, do a git commit of "Update - <file-name>.json"
+    - name: Commit - /
+      if: ${{ github.event_name == 'release' }}
+      run: |
+        # Add all specified files in the root directory
+        git add *.yaml *.yml *.json *.html
+
+        # Loop through each added file and commit them individually
+        for file in *.yaml *.yml *.json *.html; do
+          if [ -f "$file" ]; then
+            # Extract the filename without the path for the commit message
+            filename=$(basename "$file")
+            git commit -m "Update - ${filename}"
+          fi
+        done
+
+    - name: Push - pages
+      run: git push origin pages

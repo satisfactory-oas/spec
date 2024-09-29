@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o dist/satisfactory-api-spec.yaml && openapi bundle -o dist/satisfactory-api-spec.json && openapi build-docs dist/satisfactory-api-spec.yaml -o dist/satisfactory-api-redoc.html",
+    "build": "openapi bundle -o dist/satisfactory-api-spec.yaml && openapi bundle -o dist/satisfactory-api-spec.json && openapi build-docs dist/satisfactory-api-spec.yaml -o dist/index.html",
     "lint": "openapi lint"
   },
   "dependencies": {

@@ -103,8 +103,8 @@ jobs:
 
     - name: Setup - Update branch Git User
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "satisfactory-oas@github.com"
+        git config --global user.name "Your Name"
+        git config --global user.email "your-email@example.com"
 
     # Move all *.yaml, *.yml, *.json, and *.html files to /preview, mkdir if needed
     # git add the entire /preview folder

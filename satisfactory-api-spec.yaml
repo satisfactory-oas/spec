@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Satisfactory Game Server HTTPS API specification
   description: Satisfactory Game Server HTTPS API specification
-  version: 0.2.0-
+  version: 0.2.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT

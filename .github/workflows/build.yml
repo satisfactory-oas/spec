@@ -122,7 +122,9 @@ jobs:
 
         # Add the entire /preview folder to Git
         git add preview
-        git commit -m "Update - /preview"
+
+        # Commit changes if there are any
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update - /preview"
 
     # git add all *.yaml, *.yml, *.json, and *.html files in the root dir
     # for every file added, do a git commit of "Update - <file-name>.json"
@@ -132,7 +134,8 @@ jobs:
         # Add all specified files in the root directory
         git add *.yaml *.yml *.json *.html
 
-        git commit -m "Update - /"
+        # Commit changes if there are any
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update - /"
 
     - name: Push
       run: git push origin gh-pages

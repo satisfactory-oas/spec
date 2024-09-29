@@ -2,11 +2,11 @@ mode: ContinuousDelivery
 branches:
   main:
     mode: ContinuousDeployment
-    tag: preview-
+    tag: -preview-
     track-merge-target: true
   pull-request:
     mode: ContinuousDeployment
-    tag: preview-
+    tag: -preview-
     track-merge-target: true
   tags:
     regex: tags/(?<tag>.+)

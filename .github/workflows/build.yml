@@ -45,7 +45,7 @@ jobs:
         configFilePath: GitVersion.yml
 
     - name: Replace - Version
-      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseLabel }}${{ steps.gitversion.outputs.preReleaseNumber }}/g' openapi/openapi.yml
+      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.majorMinorPatch }}${{ steps.gitversion.outputs.preReleaseLabel }}${{ steps.gitversion.outputs.preReleaseNumber }}/g' openapi/openapi.yml
 
     - name: Bun - Install
       run: bun install --frozen-lockfile

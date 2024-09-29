@@ -30,7 +30,7 @@ jobs:
     - name: Setup - GitVersion
       uses: gittools/actions/gitversion/setup@v3.0
       with:
-        versionSpec: 5.12.0
+        versionSpec: 6.x
 
     - name: Setup - Bun
       uses: oven-sh/setup-bun@v2
@@ -45,7 +45,7 @@ jobs:
         configFilePath: GitVersion.yml
 
     - name: Replace - Version
-      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.majorMinorPatch }}${{ steps.gitversion.outputs.preReleaseTagWithDash }}-${{ steps.gitversion.outputs.preReleaseNumber }}/g' openapi/openapi.yml
+      run: sed -i 's/0.0.0/${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseLabel }}${{ steps.gitversion.outputs.preReleaseNumber }}/g' openapi/openapi.yml
 
     - name: Bun - Install
       run: bun install --frozen-lockfile

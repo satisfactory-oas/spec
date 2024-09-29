@@ -86,7 +86,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        ref: pages
+        ref: gh-pages
 
     - name: Clean - /preview
       if: ${{ github.ref_name == github.event.repository.default_branch }}
@@ -150,4 +150,4 @@ jobs:
         done
 
     - name: Push - pages
-      run: git push origin pages
+      run: git push origin gh-pages

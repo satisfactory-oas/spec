@@ -142,6 +142,6 @@ jobs:
       run: git push origin gh-pages
 
     - name: Trigger - Deploy
-      run: gh workflow run deploy-pages --ref gh-pages
+      run: gh workflow run deploy-pages.yml --ref gh-pages
       env:
         GH_TOKEN: ${{ github.token }}

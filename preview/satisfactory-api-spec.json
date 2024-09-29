@@ -3,7 +3,7 @@
   "info": {
     "title": "Satisfactory Game Server HTTPS API specification",
     "description": "Satisfactory Game Server HTTPS API specification",
-    "version": "0.1.1-preview-.14",
+    "version": "0.1.1-preview-.15-15",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"

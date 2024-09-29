@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# Allow gitignore
+!.gitignore
+
+# Allow directories (so you can still track specific files inside them)
+!*/
+
+# Whitelist specific file types in the root and /preview directories
+!/*.html
+!/*.yml
+!/*.yaml
+!/*.json
+!/preview/*.html
+!/preview/*.yml
+!/preview/*.yaml
+!/preview/*.json

@@ -5,6 +5,7 @@ properties:
     description: Name of the API function to execute.
     const: HealthCheck
     default: HealthCheck
+    example: HealthCheck
   data:
     type: object
     description: Data to pass to the function to execute. Format of the object depends on the function being executed

@@ -5,6 +5,7 @@ properties:
     description: Name of the API function to execute.
     const: DeleteSaveFile
     default: DeleteSaveFile
+    example: DeleteSaveFile
   data:
     type: object
     description: Data to pass to the function to execute. Format of the object depends on the function being executed

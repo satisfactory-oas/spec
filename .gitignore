@@ -1,8 +1,9 @@
 # Ignore everything
 *
 
-# Allow gitignore
+# Allow gitignore & github dir
 !.gitignore
+!.github/**
 
 # Allow directories (so you can still track specific files inside them)
 !*/

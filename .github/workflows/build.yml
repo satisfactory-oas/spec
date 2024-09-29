@@ -129,6 +129,7 @@ jobs:
             # Extract the filename without the path for the commit message
             filename=$(basename "$file")
             git commit -m "Update - ${filename}"
+            git push origin gh-pages
           fi
         done
 
@@ -146,8 +147,6 @@ jobs:
             # Extract the filename without the path for the commit message
             filename=$(basename "$file")
             git commit -m "Update - ${filename}"
+            git push origin gh-pages
           fi
         done
-
-    - name: Push - pages
-      run: git push origin gh-pages

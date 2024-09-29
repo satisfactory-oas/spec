@@ -70,3 +70,4 @@ jobs:
           dist/*.html
           dist/*.yaml
           dist/*.yml
+          dist/*.json

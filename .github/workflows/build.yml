@@ -30,7 +30,7 @@ jobs:
     - name: Setup - GitVersion
       uses: gittools/actions/gitversion/setup@v3.0
       with:
-        versionSpec: 6.x
+        versionSpec: 5.12.0
 
     - name: Setup - Bun
       uses: oven-sh/setup-bun@v2

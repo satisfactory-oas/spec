@@ -3,7 +3,7 @@
   "info": {
     "title": "Satisfactory Game Server HTTPS API specification",
     "description": "Satisfactory Game Server HTTPS API specification",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -1526,12 +1526,7 @@
       "advancedGameSettings": {
         "type": "object",
         "properties": {
-          "creativeModeEnabled": {
-            "type": "boolean",
-            "description": "True if Advanced Game Settings are enabled for the currently loaded session",
-            "example": false
-          },
-          "advancedGameSettings": {
+          "appliedAdvancedGameSettings": {
             "type": "object",
             "description": "Values of Advanced Game Settings. Key is the name of the setting, and value is its stringified value",
             "additionalProperties": {
@@ -1553,8 +1548,7 @@
           }
         },
         "required": [
-          "creativeModeEnabled",
-          "advancedGameSettings"
+          "appliedAdvancedGameSettings"
         ]
       },
       "getAdvancedGameSettingsResponse": {

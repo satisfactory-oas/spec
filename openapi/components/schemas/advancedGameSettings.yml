@@ -1,10 +1,6 @@
 type: object
 properties:
-  creativeModeEnabled:
-    type: boolean
-    description: True if Advanced Game Settings are enabled for the currently loaded session
-    example: false
-  advancedGameSettings:
+  appliedAdvancedGameSettings:
     type: object
     description: Values of Advanced Game Settings. Key is the name of the setting, and value is its stringified value
     additionalProperties:
@@ -22,5 +18,4 @@ properties:
       FG.PlayerRules.GodMode: "False"
       FG.PlayerRules.FlightMode: "False"
 required:
-- creativeModeEnabled
-- advancedGameSettings
+- appliedAdvancedGameSettings

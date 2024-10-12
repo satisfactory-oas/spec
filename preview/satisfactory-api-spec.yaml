@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Satisfactory Game Server HTTPS API specification
   description: Satisfactory Game Server HTTPS API specification
-  version: 0.1.1-preview-30
+  version: 0.2.1-preview-1
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -1032,11 +1032,7 @@ components:
     advancedGameSettings:
       type: object
       properties:
-        creativeModeEnabled:
-          type: boolean
-          description: True if Advanced Game Settings are enabled for the currently loaded session
-          example: false
-        advancedGameSettings:
+        appliedAdvancedGameSettings:
           type: object
           description: Values of Advanced Game Settings. Key is the name of the setting, and value is its stringified value
           additionalProperties:
@@ -1054,8 +1050,7 @@ components:
             FG.PlayerRules.GodMode: 'False'
             FG.PlayerRules.FlightMode: 'False'
       required:
-        - creativeModeEnabled
-        - advancedGameSettings
+        - appliedAdvancedGameSettings
     getAdvancedGameSettingsResponse:
       oneOf:
         - type: object

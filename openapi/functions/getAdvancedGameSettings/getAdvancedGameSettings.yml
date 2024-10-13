@@ -3,6 +3,8 @@ post:
   operationId: GetAdvancedGameSettings
   description: |
     Retrieves currently applied advanced game settings. Does not require input parameters.
+  tags:
+  - Game
   security:
   - bearerAuth: []
   requestBody:

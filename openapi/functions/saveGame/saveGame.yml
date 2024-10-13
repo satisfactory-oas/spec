@@ -3,6 +3,8 @@ post:
   operationId: SaveGame
   description: |
     Saves the currently loaded session into the new save game file named as the argument. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
+  tags:
+  - Saves
   security:
   - bearerAuth: ['Administrator']
   requestBody:

@@ -3,6 +3,8 @@ post:
   operationId: QueryServerState
   description: |
     Retrieves the current state of the Dedicated Server. Does not require any input parameters.
+  tags:
+  - Server
   security:
   - bearerAuth: []
   requestBody:

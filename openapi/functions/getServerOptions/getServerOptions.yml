@@ -3,6 +3,8 @@ post:
   operationId: GetServerOptions
   description: |
     Retrieves currently applied server options and server options that are still pending application (because of needing session or server restart) Does not require input parameters.
+  tags:
+  - Server
   security:
   - bearerAuth: []
   requestBody:

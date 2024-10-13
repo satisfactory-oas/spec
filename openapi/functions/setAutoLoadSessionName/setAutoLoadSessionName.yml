@@ -3,6 +3,9 @@ post:
   operationId: SetAutoLoadSessionName
   description: |
     Updates the name of the session that the Dedicated Server will automatically load on startup. Does not change currently loaded session. Requires Admin privileges. Function does not return any data on success.
+  tags:
+  - Server
+  - Sessions
   security:
   - bearerAuth: ['Administrator']
   requestBody:

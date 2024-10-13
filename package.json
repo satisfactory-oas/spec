@@ -1,13 +1,18 @@
 {
-  "name": "satisfactory-api-v1",
+  "name": "satisfactory-api-spec",
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "bundle-yaml": "openapi bundle -o dist/$npm_package_name.yaml",
+    "bundle-yml": "openapi bundle -o dist/$npm_package_name.yml",
+    "bundle-json": "openapi bundle -o dist/$npm_package_name.json",
+    "bundle": "bun run bundle-yaml && bun run bundle-yml && bun run bundle-json",
+    "build-redoc": "openapi build-docs dist/$npm_package_name.yaml -o dist/index.html",
+    "build": "bun run bundle && bun run build-redoc",
     "start": "openapi preview-docs",
-    "build": "openapi bundle -o dist/satisfactory-api-spec.yaml && openapi bundle -o dist/satisfactory-api-spec.json && openapi build-docs dist/satisfactory-api-spec.yaml -o dist/index.html",
     "lint": "openapi lint"
   },
   "dependencies": {
-    "@redocly/cli": "^1.25.3"
+    "@redocly/cli": "^1.25.5"
   }
 }

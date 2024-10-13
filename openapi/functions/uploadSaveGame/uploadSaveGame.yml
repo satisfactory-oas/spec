@@ -3,6 +3,8 @@ post:
   operationId: UploadSaveGame
   description: |
     Shuts down the Dedicated Server. If automatic restart script is setup, this allows restarting the server to apply new settings or update. Requires Admin privileges. Shutdowns initiated by remote hosts are logged with their IP and their token. Function does not return any data on success, and does not take any parameters.
+  tags:
+  - Save Management
   security:
   - bearerAuth: ['Administrator']
   requestBody:

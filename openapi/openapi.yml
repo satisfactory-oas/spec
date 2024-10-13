@@ -17,14 +17,34 @@ components:
       scheme: bearer
       bearerFormat: JWT
 
+tags:
+- name: Setup
+  description: Authorization
+- name: Authorization
+  description: Authorization
+- name: Server Status
+  description: Server Status
+- name: Server Actions
+  description: Save Management
+- name: Server Options
+  description: Server Options
+- name: Game Settings
+  description: Game Settings
+- name: Save Management
+  description: Save Management
 paths:
-  # HealthCheck
-  '/api/v1/?function=HealthCheck':
-    $ref: functions/healthCheck/healthCheck.yml
 
-  # VerifyAuthenticationToken
-  '/api/v1/?function=VerifyAuthenticationToken':
-    $ref: functions/verifyAuthenticationToken/verifyAuthenticationToken.yml
+  # --- Setup
+
+  # ClaimServer
+  '/api/v1/?function=ClaimServer':
+    $ref: functions/claimServer/claimServer.yml
+
+  # CreateNewGame
+  '/api/v1/?function=CreateNewGame':
+    $ref: functions/createNewGame/createNewGame.yml
+
+  # --- Authorization
 
   # PasswordlessLogin
   '/api/v1/?function=PasswordlessLogin':
@@ -34,13 +54,29 @@ paths:
   '/api/v1/?function=PasswordLogin':
     $ref: functions/passwordLogin/passwordLogin.yml
 
+  # SetClientPassword
+  '/api/v1/?function=SetClientPassword':
+    $ref: functions/setClientPassword/setClientPassword.yml
+
+  # SetAdminPassword
+  '/api/v1/?function=SetAdminPassword':
+    $ref: functions/setAdminPassword/setAdminPassword.yml
+
+  # VerifyAuthenticationToken
+  '/api/v1/?function=VerifyAuthenticationToken':
+    $ref: functions/verifyAuthenticationToken/verifyAuthenticationToken.yml
+
+  # --- Server Status
+
+  # HealthCheck
+  '/api/v1/?function=HealthCheck':
+    $ref: functions/healthCheck/healthCheck.yml
+
   # QueryServerState
   '/api/v1/?function=QueryServerState':
     $ref: functions/queryServerState/queryServerState.yml
 
-  # GetServerOptions
-  '/api/v1/?function=GetServerOptions':
-    $ref: functions/getServerOptions/getServerOptions.yml
+  # --- Game Settings
 
   # GetAdvancedGameSettings
   '/api/v1/?function=GetAdvancedGameSettings':
@@ -50,25 +86,7 @@ paths:
   '/api/v1/?function=ApplyAdvancedGameSettings':
     $ref: functions/applyAdvancedGameSettings/applyAdvancedGameSettings.yml
 
-  # ClaimServer
-  '/api/v1/?function=ClaimServer':
-    $ref: functions/claimServer/claimServer.yml
-
-  # RenameServer
-  '/api/v1/?function=RenameServer':
-    $ref: functions/renameServer/renameServer.yml
-
-  # SetClientPassword
-  '/api/v1/?function=SetClientPassword':
-    $ref: functions/setClientPassword/setClientPassword.yml
-
-  # SetAdminPassword
-  '/api/v1/?function=SetAdminPassword':
-    $ref: functions/setAdminPassword/setAdminPassword.yml
-
-  # SetAutoLoadSessionName
-  '/api/v1/?function=SetAutoLoadSessionName':
-    $ref: functions/setAutoLoadSessionName/setAutoLoadSessionName.yml
+  # --- Server Actions
 
   # RunCommand
   '/api/v1/?function=RunCommand':
@@ -78,13 +96,25 @@ paths:
   '/api/v1/?function=Shutdown':
     $ref: functions/shutdown/shutdown.yml
 
+  # --- Server Options
+
+  # GetServerOptions
+  '/api/v1/?function=GetServerOptions':
+    $ref: functions/getServerOptions/getServerOptions.yml
+
   # ApplyServerOptions
   '/api/v1/?function=ApplyServerOptions':
     $ref: functions/applyServerOptions/applyServerOptions.yml
 
-  # CreateNewGame
-  '/api/v1/?function=CreateNewGame':
-    $ref: functions/createNewGame/createNewGame.yml
+  # RenameServer
+  '/api/v1/?function=RenameServer':
+    $ref: functions/renameServer/renameServer.yml
+
+  # --- Save Management
+
+  # SetAutoLoadSessionName
+  '/api/v1/?function=SetAutoLoadSessionName':
+    $ref: functions/setAutoLoadSessionName/setAutoLoadSessionName.yml
 
   # SaveGame
   '/api/v1/?function=SaveGame':

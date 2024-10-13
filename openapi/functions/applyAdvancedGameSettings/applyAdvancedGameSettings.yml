@@ -3,6 +3,8 @@ post:
   operationId: ApplyAdvancedGameSettings
   description: |
     Applies new values to the provided Advanced Game Settings properties. Will automatically enable Advanced Game Settings for the currently loaded save if they are not enabled already.
+  tags:
+  - Game Settings
   security:
   - bearerAuth: ['Administrator']
   requestBody:

@@ -3,6 +3,8 @@ post:
   operationId: CreateNewGame
   description: |
     Creates a new session on the Dedicated Server, and immediately loads it. HTTPS API becomes temporarily unavailable when map loading is in progress | Function does not return any data on success.
+  tags:
+  - Setup
   security:
   - bearerAuth: []
   requestBody:

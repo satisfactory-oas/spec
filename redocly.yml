@@ -11,3 +11,6 @@ rules:
 theme:
   openapi:
     htmlTemplate: ./docs/index.html
+    jsonSampleExpandLevel: all
+    schemaExpansionLevel: all
+    sortOperationsAlphabetically: false

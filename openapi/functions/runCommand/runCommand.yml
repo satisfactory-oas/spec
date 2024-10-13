@@ -3,6 +3,8 @@ post:
   operationId: RunCommand
   description: |
     Runs the given Console Command on the Dedicated Server, and returns it's output to the Console. Requires Admin privileges.
+  tags:
+  - Server Actions
   security:
   - bearerAuth: ['Administrator']
   requestBody:

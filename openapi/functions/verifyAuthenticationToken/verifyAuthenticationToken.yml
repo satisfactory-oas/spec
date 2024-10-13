@@ -2,6 +2,8 @@ post:
   summary: Verify Authentication Token
   operationId: VerifyAuthenticationToken
   description: Verifies the Authentication token provided to the Dedicated Server API. Returns No Content if the provided token is valid. This function does not require input parameters and does not return any data.
+  tags:
+  - Authorization
   security:
   - bearerAuth: []
   requestBody:

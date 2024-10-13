@@ -3,6 +3,8 @@ post:
   operationId: EnumerateSessions
   description: |
     Enumerates all save game files available on the Dedicated Server. Requires Admin privileges. Function does not require any additional parameters.
+  tags:
+  - Save Management
   security:
   - bearerAuth: ['Administrator']
   requestBody:

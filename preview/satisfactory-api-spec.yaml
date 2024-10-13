@@ -2,235 +2,35 @@ openapi: 3.1.0
 info:
   title: Satisfactory Game Server HTTPS API specification
   description: Satisfactory Game Server HTTPS API specification
-  version: 0.2.1-preview-1
+  version: 0.2.2-preview-1
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
   - url: https://localhost:7777
+tags:
+  - name: Setup
+    description: Functions typically ran shortly after a Game Server starts up for the first time
+  - name: Authorization
+    description: Anything related to API or Server access
+  - name: Server
+    description: Anything related to managing or adjusting the Server
+  - name: Game
+    description: Anything related to the game running on the Server
+  - name: Saves
+    description: Individual Save related management
+  - name: Sessions
+    description: Save Sessions related management
 paths:
-  /api/v1/?function=HealthCheck:
-    post:
-      summary: Health Check
-      operationId: HealthCheck
-      description: Performs a health check on the Dedicated Server API. Allows passing additional data between Modded Dedicated Server and Modded Game Client. This function requires no Authentication.
-      security:
-        - {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/healthCheckRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/healthCheckResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-  /api/v1/?function=VerifyAuthenticationToken:
-    post:
-      summary: Verify Authentication Token
-      operationId: VerifyAuthenticationToken
-      description: Verifies the Authentication token provided to the Dedicated Server API. Returns No Content if the provided token is valid. This function does not require input parameters and does not return any data.
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/verifyAuthenticationTokenRequest'
-        required: true
-      responses:
-        '204':
-          description: No Content - Authentication token is still valid
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=PasswordlessLogin:
-    post:
-      summary: Passwordless Login
-      operationId: PasswordlessLogin
-      description: |
-        Attempts to perform a passwordless login to the Dedicated Server as a player. Passwordless login is possible if the Dedicated Server is not claimed, or if Client Protection Password is not set for the Dedicated Server. This function requires no Authentication.
-      security:
-        - {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/passwordlessLoginRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/passwordlessLoginResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-  /api/v1/?function=PasswordLogin:
-    post:
-      summary: Password Login
-      operationId: PasswordLogin
-      description: |
-        Attempts to log in to the Dedicated Server as a player using either Admin Password or Client Protection Password. This function requires no Authentication.
-      security:
-        - {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/passwordLoginRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/passwordLoginResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-  /api/v1/?function=QueryServerState:
-    post:
-      summary: Query Server State
-      operationId: QueryServerState
-      description: |
-        Retrieves the current state of the Dedicated Server. Does not require any input parameters.
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/queryServerStateRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/queryServerStateResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=GetServerOptions:
-    post:
-      summary: Get Server Options
-      operationId: GetServerOptions
-      description: |
-        Retrieves currently applied server options and server options that are still pending application (because of needing session or server restart) Does not require input parameters.
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/getServerOptionsRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getServerOptionsResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=GetAdvancedGameSettings:
-    post:
-      summary: Get Advanced Game Settings
-      operationId: GetAdvancedGameSettings
-      description: |
-        Retrieves currently applied advanced game settings. Does not require input parameters.
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/getAdvancedGameSettingsRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAdvancedGameSettingsResponse'
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=ApplyAdvancedGameSettings:
-    post:
-      summary: Apply Advanced Game Settings
-      operationId: ApplyAdvancedGameSettings
-      description: |
-        Applies new values to the provided Advanced Game Settings properties. Will automatically enable Advanced Game Settings for the currently loaded save if they are not enabled already.
-      security:
-        - bearerAuth:
-            - Administrator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/applyAdvancedGameSettingsRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok - Error
-          $ref: '#/components/responses/error'
-        '204':
-          description: No Content - Success
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
   /api/v1/?function=ClaimServer:
     post:
       summary: Claim Server
       operationId: ClaimServer
       description: |
         Claims this Dedicated Server if it is not claimed. Requires InitialAdmin privilege level, which can only be acquired by attempting passwordless login while the server does not have an Admin Password set, e.g. it is not claimed yet. Function does not return any data in case of success, and the server is claimed. The client should drop InitialAdmin privileges after that and use returned AuthenticationToken instead, and update it's cached server game state by calling QueryServerState.
+      tags:
+        - Setup
+        - Server
       security:
         - bearerAuth:
             - InitialAdmin
@@ -256,27 +56,29 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
-  /api/v1/?function=RenameServer:
+  /api/v1/?function=CreateNewGame:
     post:
-      summary: Rename Server
-      operationId: RenameServer
+      summary: Create New Game
+      operationId: CreateNewGame
       description: |
-        Renames the Dedicated Server once it has been claimed. Requires Admin privileges. Function does not return any data on success.
+        Creates a new session on the Dedicated Server, and immediately loads it. HTTPS API becomes temporarily unavailable when map loading is in progress | Function does not return any data on success.
+      tags:
+        - Setup
+        - Game
       security:
-        - bearerAuth:
-            - Administrator
+        - bearerAuth: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/renameServerRequest'
+              $ref: '#/components/schemas/createNewGameRequest'
         required: true
       responses:
         '200':
           description: Ok - Error
           $ref: '#/components/responses/error'
-        '204':
-          description: No Content - Success
+        '202':
+          description: Accepted - Success
         '400':
           description: Bad request
           $ref: '#/components/responses/error'
@@ -286,12 +88,67 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
+  /api/v1/?function=PasswordlessLogin:
+    post:
+      summary: Passwordless Login
+      operationId: PasswordlessLogin
+      description: |
+        Attempts to perform a passwordless login to the Dedicated Server as a player. Passwordless login is possible if the Dedicated Server is not claimed, or if Client Protection Password is not set for the Dedicated Server. This function requires no Authentication.
+      tags:
+        - Authorization
+      security:
+        - {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/passwordlessLoginRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/passwordlessLoginResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+  /api/v1/?function=PasswordLogin:
+    post:
+      summary: Password Login
+      operationId: PasswordLogin
+      description: |
+        Attempts to log in to the Dedicated Server as a player using either Admin Password or Client Protection Password. This function requires no Authentication.
+      tags:
+        - Authorization
+      security:
+        - {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/passwordLoginRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/passwordLoginResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
   /api/v1/?function=SetClientPassword:
     post:
       summary: Set Client Password
       operationId: SetClientPassword
       description: |
         Updates the currently set Client Protection Password. This will invalidate all previously issued Client authentication tokens. Pass empty string to remove the password, and let anyone join the server as Client. Requres Admin privileges. Function does not return any data on success.
+      tags:
+        - Authorization
+        - Server
       security:
         - bearerAuth:
             - Administrator
@@ -322,6 +179,8 @@ paths:
       operationId: SetAdminPassword
       description: |
         Updates the currently set Admin Password. This will invalidate all previously issued Client and Admin authentication tokens. Requires Admin privileges. Function does not return any data on success.
+      tags:
+        - Authorization
       security:
         - bearerAuth:
             - Administrator
@@ -347,12 +206,164 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
+  /api/v1/?function=VerifyAuthenticationToken:
+    post:
+      summary: Verify Authentication Token
+      operationId: VerifyAuthenticationToken
+      description: Verifies the Authentication token provided to the Dedicated Server API. Returns No Content if the provided token is valid. This function does not require input parameters and does not return any data.
+      tags:
+        - Authorization
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/verifyAuthenticationTokenRequest'
+        required: true
+      responses:
+        '204':
+          description: No Content - Authentication token is still valid
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=EnumerateSessions:
+    post:
+      summary: Enumerate Sessions
+      operationId: EnumerateSessions
+      description: |
+        Enumerates all save game files available on the Dedicated Server. Requires Admin privileges. Function does not require any additional parameters.
+      tags:
+        - Sessions
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/enumerateSessionsRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enumerateSessionsResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=HealthCheck:
+    post:
+      summary: Health Check
+      operationId: HealthCheck
+      description: Performs a health check on the Dedicated Server API. Allows passing additional data between Modded Dedicated Server and Modded Game Client. This function requires no Authentication.
+      tags:
+        - Server
+      security:
+        - {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/healthCheckRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/healthCheckResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+  /api/v1/?function=GetServerOptions:
+    post:
+      summary: Get Server Options
+      operationId: GetServerOptions
+      description: |
+        Retrieves currently applied server options and server options that are still pending application (because of needing session or server restart) Does not require input parameters.
+      tags:
+        - Server
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getServerOptionsRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getServerOptionsResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=ApplyServerOptions:
+    post:
+      summary: Apply Server Options
+      operationId: ApplyServerOptions
+      description: |
+        Applies new Server Options to the Dedicated Server. Requires Admin privileges.
+      tags:
+        - Server
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/applyServerOptionsRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok - Error
+          $ref: '#/components/responses/error'
+        '204':
+          description: No Content - Success
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
   /api/v1/?function=SetAutoLoadSessionName:
     post:
       summary: Set Auto Load Session Name
       operationId: SetAutoLoadSessionName
       description: |
         Updates the name of the session that the Dedicated Server will automatically load on startup. Does not change currently loaded session. Requires Admin privileges. Function does not return any data on success.
+      tags:
+        - Server
+        - Sessions
       security:
         - bearerAuth:
             - Administrator
@@ -377,12 +388,78 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
+  /api/v1/?function=QueryServerState:
+    post:
+      summary: Query Server State
+      operationId: QueryServerState
+      description: |
+        Retrieves the current state of the Dedicated Server. Does not require any input parameters.
+      tags:
+        - Server
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/queryServerStateRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/queryServerStateResponse'
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=RenameServer:
+    post:
+      summary: Rename Server
+      operationId: RenameServer
+      description: |
+        Renames the Dedicated Server once it has been claimed. Requires Admin privileges. Function does not return any data on success.
+      tags:
+        - Server
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/renameServerRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok - Error
+          $ref: '#/components/responses/error'
+        '204':
+          description: No Content - Success
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
   /api/v1/?function=RunCommand:
     post:
       summary: Run Command
       operationId: RunCommand
       description: |
         Runs the given Console Command on the Dedicated Server, and returns it's output to the Console. Requires Admin privileges.
+      tags:
+        - Server
       security:
         - bearerAuth:
             - Administrator
@@ -413,6 +490,8 @@ paths:
       operationId: Shutdown
       description: |
         Shuts down the Dedicated Server. If automatic restart script is setup, this allows restarting the server to apply new settings or update. Requires Admin privileges. Shutdowns initiated by remote hosts are logged with their IP and their token. Function does not return any data on success, and does not take any parameters.
+      tags:
+        - Server
       security:
         - bearerAuth:
             - Administrator
@@ -437,131 +516,14 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
-  /api/v1/?function=ApplyServerOptions:
-    post:
-      summary: Apply Server Options
-      operationId: ApplyServerOptions
-      description: |
-        Applies new Server Options to the Dedicated Server. Requires Admin privileges.
-      security:
-        - bearerAuth:
-            - Administrator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/applyServerOptionsRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok - Error
-          $ref: '#/components/responses/error'
-        '204':
-          description: No Content - Success
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=CreateNewGame:
-    post:
-      summary: Create New Game
-      operationId: CreateNewGame
-      description: |
-        Creates a new session on the Dedicated Server, and immediately loads it. HTTPS API becomes temporarily unavailable when map loading is in progress | Function does not return any data on success.
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createNewGameRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok - Error
-          $ref: '#/components/responses/error'
-        '202':
-          description: Accepted - Success
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=SaveGame:
-    post:
-      summary: Save Game
-      operationId: SaveGame
-      description: |
-        Saves the currently loaded session into the new save game file named as the argument. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
-      security:
-        - bearerAuth:
-            - Administrator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/saveGameRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok - Error
-          $ref: '#/components/responses/error'
-        '204':
-          description: No Content - Success
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
-  /api/v1/?function=DeleteSaveFile:
-    post:
-      summary: Delete Save File
-      operationId: DeleteSaveFile
-      description: |
-        Deletes the existing save game file from the server. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
-      security:
-        - bearerAuth:
-            - Administrator
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/deleteSaveFileRequest'
-        required: true
-      responses:
-        '200':
-          description: Ok - Error
-          $ref: '#/components/responses/error'
-        '204':
-          description: No Content - Success
-        '400':
-          description: Bad request
-          $ref: '#/components/responses/error'
-        '401':
-          description: Unauthorized
-          $ref: '#/components/responses/error'
-        '403':
-          description: Forbidden
-          $ref: '#/components/responses/error'
   /api/v1/?function=DeleteSaveSession:
     post:
       summary: Delete Save Session
       operationId: DeleteSaveSession
       description: |
         Deletes all save files belonging to the specific session name. Requires Admin privileges. SessionName must be a valid session name with at least one saved save game file belonging to it. Function does not return any data on success.
+      tags:
+        - Sessions
       security:
         - bearerAuth:
             - Administrator
@@ -586,20 +548,21 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
-  /api/v1/?function=EnumerateSessions:
+  /api/v1/?function=GetAdvancedGameSettings:
     post:
-      summary: Enumerate Sessions
-      operationId: EnumerateSessions
+      summary: Get Advanced Game Settings
+      operationId: GetAdvancedGameSettings
       description: |
-        Enumerates all save game files available on the Dedicated Server. Requires Admin privileges. Function does not require any additional parameters.
+        Retrieves currently applied advanced game settings. Does not require input parameters.
+      tags:
+        - Game
       security:
-        - bearerAuth:
-            - Administrator
+        - bearerAuth: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/enumerateSessionsRequest'
+              $ref: '#/components/schemas/getAdvancedGameSettingsRequest'
         required: true
       responses:
         '200':
@@ -607,7 +570,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/enumerateSessionsResponse'
+                $ref: '#/components/schemas/getAdvancedGameSettingsResponse'
         '400':
           description: Bad request
           $ref: '#/components/responses/error'
@@ -617,12 +580,14 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
-  /api/v1/?function=LoadGame:
+  /api/v1/?function=ApplyAdvancedGameSettings:
     post:
-      summary: Load Game
-      operationId: LoadGame
+      summary: Apply Advanced Game Settings
+      operationId: ApplyAdvancedGameSettings
       description: |
-        Loads the save game file by name, optionally with Advanced Game Settings enabled. Requires Admin privileges. Dedicated Server HTTPS API will become temporarily unavailable when save game is being loaded. Function does not return any data on succcess.
+        Applies new values to the provided Advanced Game Settings properties. Will automatically enable Advanced Game Settings for the currently loaded save if they are not enabled already.
+      tags:
+        - Game
       security:
         - bearerAuth:
             - Administrator
@@ -630,7 +595,71 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/loadGameRequest'
+              $ref: '#/components/schemas/applyAdvancedGameSettingsRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok - Error
+          $ref: '#/components/responses/error'
+        '204':
+          description: No Content - Success
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=SaveGame:
+    post:
+      summary: Save Game
+      operationId: SaveGame
+      description: |
+        Saves the currently loaded session into the new save game file named as the argument. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
+      tags:
+        - Saves
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/saveGameRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok - Error
+          $ref: '#/components/responses/error'
+        '204':
+          description: No Content - Success
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=DownloadSaveGame:
+    post:
+      summary: Download Save Game
+      operationId: DownloadSaveGame
+      description: |
+        Downloads save game with the given name from the Dedicated Server. Requires Admin privileges. This function responds with the file attachment containing the save game file on success, and with normal error response in case of error.
+      tags:
+        - Saves
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/downloadSaveGameRequest'
         required: true
       responses:
         '200':
@@ -653,6 +682,8 @@ paths:
       operationId: UploadSaveGame
       description: |
         Shuts down the Dedicated Server. If automatic restart script is setup, this allows restarting the server to apply new settings or update. Requires Admin privileges. Shutdowns initiated by remote hosts are logged with their IP and their token. Function does not return any data on success, and does not take any parameters.
+      tags:
+        - Saves
       security:
         - bearerAuth:
             - Administrator
@@ -684,12 +715,14 @@ paths:
         '403':
           description: Forbidden
           $ref: '#/components/responses/error'
-  /api/v1/?function=DownloadSaveGame:
+  /api/v1/?function=LoadGame:
     post:
-      summary: Download Save Game
-      operationId: DownloadSaveGame
+      summary: Load Game
+      operationId: LoadGame
       description: |
-        Downloads save game with the given name from the Dedicated Server. Requires Admin privileges. This function responds with the file attachment containing the save game file on success, and with normal error response in case of error.
+        Loads the save game file by name, optionally with Advanced Game Settings enabled. Requires Admin privileges. Dedicated Server HTTPS API will become temporarily unavailable when save game is being loaded. Function does not return any data on succcess.
+      tags:
+        - Saves
       security:
         - bearerAuth:
             - Administrator
@@ -697,7 +730,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/downloadSaveGameRequest'
+              $ref: '#/components/schemas/loadGameRequest'
+        required: true
+      responses:
+        '200':
+          description: Ok - Error
+          $ref: '#/components/responses/error'
+        '204':
+          description: No Content - Success
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/error'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/error'
+        '403':
+          description: Forbidden
+          $ref: '#/components/responses/error'
+  /api/v1/?function=DeleteSaveFile:
+    post:
+      summary: Delete Save File
+      operationId: DeleteSaveFile
+      description: |
+        Deletes the existing save game file from the server. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
+      tags:
+        - Saves
+      security:
+        - bearerAuth:
+            - Administrator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteSaveFileRequest'
         required: true
       responses:
         '200':
@@ -721,24 +786,30 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    healthCheckRequest:
+    claimServerRequest:
       type: object
       properties:
         function:
           type: string
           description: Name of the API function to execute.
-          const: HealthCheck
-          default: HealthCheck
-          example: HealthCheck
+          const: ClaimServer
+          default: ClaimServer
+          example: ClaimServer
         data:
           type: object
           description: Data to pass to the function to execute. Format of the object depends on the function being executed
           properties:
-            clientCustomData:
+            serverName:
               type: string
-              description: Custom Data passed from the Game Client or Third Party service. Not used by vanilla Dedicated Servers
+              description: New name of the Dedicated Server
+              example: Test Server
+            adminPassword:
+              type: string
+              description: Admin Password to set on the Dedicated Server, in plaintext
+              example: super-secret-password
           required:
-            - clientCustomData
+            - serverName
+            - adminPassword
       required:
         - function
         - data
@@ -757,39 +828,97 @@ components:
           description: Optional. Additional information about the error, for example, list of parameters that are missing
       required:
         - errorCode
-    healthCheckResponse:
+    claimServerResponse:
       oneOf:
         - type: object
           title: success
           properties:
             data:
               type: object
+              description: Data returned by the function executed. Type depends on the function the request performed
               properties:
-                health:
+                authenticationToken:
                   type: string
-                  enum:
-                    - healthy
-                    - slow
-                  description: healthy if tick rate is above ten ticks per second, slow otherwise
-                serverCustomData:
-                  type: string
-                  description: Custom Data passed from the Dedicated Server to the Game Client or Third Party service. Vanilla Dedicated Server returns empty string
+                  description: New Authentication Token that the Caller should use to drop Initial Admin privileges
               required:
-                - health
+                - authenticationToken
           required:
             - data
         - $ref: '#/components/schemas/error'
-    verifyAuthenticationTokenRequest:
+    advancedGameSettings:
+      type: object
+      properties:
+        appliedAdvancedGameSettings:
+          type: object
+          description: Values of Advanced Game Settings. Key is the name of the setting, and value is its stringified value
+          additionalProperties:
+            type: string
+          example:
+            FG.GameRules.NoPower: 'False'
+            FG.GameRules.StartingTier: '0'
+            FG.GameRules.DisableArachnidCreatures: 'False'
+            FG.GameRules.NoUnlockCost: 'False'
+            FG.GameRules.SetGamePhase: '0'
+            FG.GameRules.UnlockAllResearchSchematics: 'False'
+            FG.GameRules.UnlockInstantAltRecipes: 'False'
+            FG.GameRules.UnlockAllResourceSinkSchematics: 'False'
+            FG.PlayerRules.NoBuildCost: 'False'
+            FG.PlayerRules.GodMode: 'False'
+            FG.PlayerRules.FlightMode: 'False'
+      required:
+        - appliedAdvancedGameSettings
+    createNewGameRequest:
       type: object
       properties:
         function:
           type: string
           description: Name of the API function to execute.
-          const: VerifyAuthenticationToken
-          default: VerifyAuthenticationToken
-          example: VerifyAuthenticationToken
+          const: CreateNewGame
+          default: CreateNewGame
+          example: CreateNewGame
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            newGameData:
+              type: object
+              description: Key is the name of the Server Option, and the Value is the new value as string
+              properties:
+                sessionName:
+                  type: string
+                  description: Name of the session to create
+                  example: Test
+                mapName:
+                  type: string
+                  description: Path Name to the Map Package to use as a map. If not specified, default level
+                  example: ''
+                startingLocation:
+                  type: string
+                  description: Name of the starting location to use. Leaving it empty will use random starting location
+                  example: ''
+                bSkipOnboarding:
+                  type: boolean
+                  example: false
+                  description: Whether the Onboarding should be skipped. Currently, Onboarding is always skipped on the Dedicated Servers. Currently SkipOnboarding must be set to bSkipOnboarding, due to an issue with the property names.
+                advancedGameSettings:
+                  description: Advanced Game Settings to apply to the newly created session
+                  $ref: '#/components/schemas/advancedGameSettings'
+                customOptionsOnlyForModding:
+                  type: object
+                  description: Custom Options to pass to the newly created session URL. Not used by vanilla Dedicated Servers
+                  additionalProperties:
+                    type: string
+                  example: {}
+              required:
+                - sessionName
+                - mapName
+                - startingLocation
+                - bSkipOnboarding
+          required:
+            - newGameData
       required:
         - function
+        - data
     privilegeLevel:
       type: string
       description: |
@@ -888,263 +1017,6 @@ components:
           required:
             - data
         - $ref: '#/components/schemas/error'
-    queryServerStateRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: QueryServerState
-          default: QueryServerState
-          example: QueryServerState
-      required:
-        - function
-    queryServerStateResponse:
-      oneOf:
-        - type: object
-          title: success
-          properties:
-            data:
-              type: object
-              description: Data returned by the function executed. Type depends on the function the request performed
-              properties:
-                serverGameState:
-                  type: object
-                  description: Current game state of the server
-                  properties:
-                    activeSessionName:
-                      type: string
-                      description: Name of the currently loaded game session
-                      example: SERVER-SESSION26924571
-                    numConnectedPlayers:
-                      type: integer
-                      description: Number of the players currently connected to the Dedicated Server
-                      example: 0
-                    playerLimit:
-                      type: integer
-                      description: Maximum number of players that can be connected to the Dedicated Server
-                      example: 4
-                    techTier:
-                      type: integer
-                      description: Maximum Tech Tier of all Schematics currently unlocked
-                      example: 0
-                    activeSchematic:
-                      type: string
-                      description: Schematic currently set as Active Milestone
-                      example: None
-                    gamePhase:
-                      type: string
-                      description: Current game phase. None if no game is running
-                      example: None
-                    isGameRunning:
-                      type: boolean
-                      description: True if the save is currently loaded, false if the server is waiting for the session to be created
-                      example: false
-                    totalGameDuration:
-                      type: integer
-                      description: Total time the current save has been loaded, in seconds
-                      example: 0
-                    isGamePaused:
-                      type: boolean
-                      description: True if the game is paused. If the game is paused, total game duration does not increase
-                      example: false
-                    averageTickRate:
-                      type: number
-                      description: Average tick rate of the server, in ticks per second
-                      format: float
-                      example: 29.89044189453125
-                    autoLoadSessionName:
-                      type: string
-                      description: Name of the session that will be loaded when the server starts automatically
-                      example: SERVER-SESSION26924571
-                  required:
-                    - activeSessionName
-                    - numConnectedPlayers
-                    - playerLimit
-                    - techTier
-                    - activeSchematic
-                    - gamePhase
-                    - isGameRunning
-                    - totalGameDuration
-                    - isGamePaused
-                    - averageTickRate
-                    - autoLoadSessionName
-              required:
-                - serverGameState
-          required:
-            - data
-        - $ref: '#/components/schemas/error'
-    getServerOptionsRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: GetServerOptions
-          default: GetServerOptions
-          example: GetServerOptions
-      required:
-        - function
-    serverOptions:
-      type: object
-      description: All current server option values, where keys are the option names and values are their stringified values.
-      additionalProperties:
-        type: string
-      example:
-        FG.DSAutoPause: 'True'
-        FG.DSAutoSaveOnDisconnect: 'True'
-        FG.DisableSeasonalEvents: 'False'
-        FG.AutosaveInterval: '300.0'
-        FG.ServerRestartTimeSlot: '1440.0'
-        FG.SendGameplayData: 'True'
-        FG.NetworkQuality: '1'
-    getServerOptionsResponse:
-      oneOf:
-        - type: object
-          title: success
-          properties:
-            data:
-              type: object
-              description: Data returned by the function executed. Type depends on the function the request performed
-              properties:
-                serverOptions:
-                  $ref: '#/components/schemas/serverOptions'
-                pendingServerOptions:
-                  description: Server option values that will be applied when the session or server restarts, where keys are the option names and values are their stringified values.
-                  $ref: '#/components/schemas/serverOptions'
-              required:
-                - serverOptions
-                - pendingServerOptions
-          required:
-            - data
-        - $ref: '#/components/schemas/error'
-    getAdvancedGameSettingsRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: GetAdvancedGameSettings
-          default: GetAdvancedGameSettings
-          example: GetAdvancedGameSettings
-      required:
-        - function
-    advancedGameSettings:
-      type: object
-      properties:
-        appliedAdvancedGameSettings:
-          type: object
-          description: Values of Advanced Game Settings. Key is the name of the setting, and value is its stringified value
-          additionalProperties:
-            type: string
-          example:
-            FG.GameRules.NoPower: 'False'
-            FG.GameRules.StartingTier: '0'
-            FG.GameRules.DisableArachnidCreatures: 'False'
-            FG.GameRules.NoUnlockCost: 'False'
-            FG.GameRules.SetGamePhase: '0'
-            FG.GameRules.UnlockAllResearchSchematics: 'False'
-            FG.GameRules.UnlockInstantAltRecipes: 'False'
-            FG.GameRules.UnlockAllResourceSinkSchematics: 'False'
-            FG.PlayerRules.NoBuildCost: 'False'
-            FG.PlayerRules.GodMode: 'False'
-            FG.PlayerRules.FlightMode: 'False'
-      required:
-        - appliedAdvancedGameSettings
-    getAdvancedGameSettingsResponse:
-      oneOf:
-        - type: object
-          title: success
-          properties:
-            data:
-              type: object
-              description: Data returned by the function executed. Type depends on the function the request performed
-              $ref: '#/components/schemas/advancedGameSettings'
-          required:
-            - data
-        - $ref: '#/components/schemas/error'
-    applyAdvancedGameSettingsRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: ApplyAdvancedGameSettings
-          default: ApplyAdvancedGameSettings
-          example: ApplyAdvancedGameSettings
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          $ref: '#/components/schemas/advancedGameSettings'
-      required:
-        - function
-        - data
-    claimServerRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: ClaimServer
-          default: ClaimServer
-          example: ClaimServer
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            serverName:
-              type: string
-              description: New name of the Dedicated Server
-              example: Test Server
-            adminPassword:
-              type: string
-              description: Admin Password to set on the Dedicated Server, in plaintext
-              example: super-secret-password
-          required:
-            - serverName
-            - adminPassword
-      required:
-        - function
-        - data
-    claimServerResponse:
-      oneOf:
-        - type: object
-          title: success
-          properties:
-            data:
-              type: object
-              description: Data returned by the function executed. Type depends on the function the request performed
-              properties:
-                authenticationToken:
-                  type: string
-                  description: New Authentication Token that the Caller should use to drop Initial Admin privileges
-              required:
-                - authenticationToken
-          required:
-            - data
-        - $ref: '#/components/schemas/error'
-    renameServerRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: RenameServer
-          default: RenameServer
-          example: RenameServer
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            serverName:
-              type: string
-              description: New name of the Dedicated Server
-              example: Not Test Server
-          required:
-            - serverName
-      required:
-        - function
-        - data
     setClientPasswordRequest:
       type: object
       properties:
@@ -1206,199 +1078,17 @@ components:
           required:
             - data
         - $ref: '#/components/schemas/error'
-    setAutoLoadSessionNameRequest:
+    verifyAuthenticationTokenRequest:
       type: object
       properties:
         function:
           type: string
           description: Name of the API function to execute.
-          const: SetAutoLoadSessionName
-          default: SetAutoLoadSessionName
-          example: SetAutoLoadSessionName
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            sessionName:
-              type: string
-              description: Name of the session to automatically load on Dedicated Server startup
-              example: Test
-          required:
-            - sessionName
+          const: VerifyAuthenticationToken
+          default: VerifyAuthenticationToken
+          example: VerifyAuthenticationToken
       required:
         - function
-        - data
-    runCommandRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: RunCommand
-          default: RunCommand
-          example: RunCommand
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            command:
-              type: string
-              description: Command Line to run on the Dedicated Server
-          required:
-            - command
-      required:
-        - function
-        - data
-    shutdownRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: Shutdown
-          default: Shutdown
-          example: Shutdown
-      required:
-        - function
-    applyServerOptionsRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: ApplyServerOptions
-          default: ApplyServerOptions
-          example: ApplyServerOptions
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            updatedServerOptions:
-              description: Key is the name of the Server Option, and the Value is the new value as string
-              $ref: '#/components/schemas/serverOptions'
-          required:
-            - updatedServerOptions
-      required:
-        - function
-        - data
-    createNewGameRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: CreateNewGame
-          default: CreateNewGame
-          example: CreateNewGame
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            newGameData:
-              type: object
-              description: Key is the name of the Server Option, and the Value is the new value as string
-              properties:
-                sessionName:
-                  type: string
-                  description: Name of the session to create
-                  example: Test
-                mapName:
-                  type: string
-                  description: Path Name to the Map Package to use as a map. If not specified, default level
-                  example: ''
-                startingLocation:
-                  type: string
-                  description: Name of the starting location to use. Leaving it empty will use random starting location
-                  example: ''
-                bSkipOnboarding:
-                  type: boolean
-                  example: false
-                  description: Whether the Onboarding should be skipped. Currently, Onboarding is always skipped on the Dedicated Servers. Currently SkipOnboarding must be set to bSkipOnboarding, due to an issue with the property names.
-                advancedGameSettings:
-                  description: Advanced Game Settings to apply to the newly created session
-                  $ref: '#/components/schemas/advancedGameSettings'
-                customOptionsOnlyForModding:
-                  type: object
-                  description: Custom Options to pass to the newly created session URL. Not used by vanilla Dedicated Servers
-                  additionalProperties:
-                    type: string
-                  example: {}
-              required:
-                - sessionName
-                - mapName
-                - startingLocation
-                - bSkipOnboarding
-          required:
-            - newGameData
-      required:
-        - function
-        - data
-    saveGameRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: SaveGame
-          default: SaveGame
-          example: SaveGame
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            saveName:
-              type: string
-              description: Name of the save game file to create. Passed name might be sanitized
-              example: Test Save 1
-          required:
-            - saveName
-      required:
-        - function
-        - data
-    deleteSaveFileRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: DeleteSaveFile
-          default: DeleteSaveFile
-          example: DeleteSaveFile
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            saveName:
-              type: string
-              description: Name of the save game file to delete. Passed name might be sanitized
-              example: Test Save 1
-          required:
-            - saveName
-      required:
-        - function
-        - data
-    deleteSaveSessionRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          description: Name of the API function to execute.
-          const: DeleteSaveSession
-          default: DeleteSaveSession
-          example: DeleteSaveSession
-        data:
-          type: object
-          description: Data to pass to the function to execute. Format of the object depends on the function being executed
-          properties:
-            sessionName:
-              type: string
-              description: Name of the save session to delete
-              example: Test
-          required:
-            - sessionName
-      required:
-        - function
-        - data
     enumerateSessionsRequest:
       type: object
       properties:
@@ -1512,30 +1202,378 @@ components:
           required:
             - data
         - $ref: '#/components/schemas/error'
-    loadGameRequest:
+    healthCheckRequest:
       type: object
       properties:
         function:
           type: string
           description: Name of the API function to execute.
-          const: LoadGame
-          default: LoadGame
-          example: LoadGame
+          const: HealthCheck
+          default: HealthCheck
+          example: HealthCheck
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            clientCustomData:
+              type: string
+              description: Custom Data passed from the Game Client or Third Party service. Not used by vanilla Dedicated Servers
+          required:
+            - clientCustomData
+      required:
+        - function
+        - data
+    healthCheckResponse:
+      oneOf:
+        - type: object
+          title: success
+          properties:
+            data:
+              type: object
+              properties:
+                health:
+                  type: string
+                  enum:
+                    - healthy
+                    - slow
+                  description: healthy if tick rate is above ten ticks per second, slow otherwise
+                serverCustomData:
+                  type: string
+                  description: Custom Data passed from the Dedicated Server to the Game Client or Third Party service. Vanilla Dedicated Server returns empty string
+              required:
+                - health
+          required:
+            - data
+        - $ref: '#/components/schemas/error'
+    getServerOptionsRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: GetServerOptions
+          default: GetServerOptions
+          example: GetServerOptions
+      required:
+        - function
+    serverOptions:
+      type: object
+      description: All current server option values, where keys are the option names and values are their stringified values.
+      additionalProperties:
+        type: string
+      example:
+        FG.DSAutoPause: 'True'
+        FG.DSAutoSaveOnDisconnect: 'True'
+        FG.DisableSeasonalEvents: 'False'
+        FG.AutosaveInterval: '300.0'
+        FG.ServerRestartTimeSlot: '1440.0'
+        FG.SendGameplayData: 'True'
+        FG.NetworkQuality: '1'
+    getServerOptionsResponse:
+      oneOf:
+        - type: object
+          title: success
+          properties:
+            data:
+              type: object
+              description: Data returned by the function executed. Type depends on the function the request performed
+              properties:
+                serverOptions:
+                  $ref: '#/components/schemas/serverOptions'
+                pendingServerOptions:
+                  description: Server option values that will be applied when the session or server restarts, where keys are the option names and values are their stringified values.
+                  $ref: '#/components/schemas/serverOptions'
+              required:
+                - serverOptions
+                - pendingServerOptions
+          required:
+            - data
+        - $ref: '#/components/schemas/error'
+    applyServerOptionsRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: ApplyServerOptions
+          default: ApplyServerOptions
+          example: ApplyServerOptions
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            updatedServerOptions:
+              description: Key is the name of the Server Option, and the Value is the new value as string
+              $ref: '#/components/schemas/serverOptions'
+          required:
+            - updatedServerOptions
+      required:
+        - function
+        - data
+    setAutoLoadSessionNameRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: SetAutoLoadSessionName
+          default: SetAutoLoadSessionName
+          example: SetAutoLoadSessionName
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            sessionName:
+              type: string
+              description: Name of the session to automatically load on Dedicated Server startup
+              example: Test
+          required:
+            - sessionName
+      required:
+        - function
+        - data
+    queryServerStateRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: QueryServerState
+          default: QueryServerState
+          example: QueryServerState
+      required:
+        - function
+    queryServerStateResponse:
+      oneOf:
+        - type: object
+          title: success
+          properties:
+            data:
+              type: object
+              description: Data returned by the function executed. Type depends on the function the request performed
+              properties:
+                serverGameState:
+                  type: object
+                  description: Current game state of the server
+                  properties:
+                    activeSessionName:
+                      type: string
+                      description: Name of the currently loaded game session
+                      example: SERVER-SESSION26924571
+                    numConnectedPlayers:
+                      type: integer
+                      description: Number of the players currently connected to the Dedicated Server
+                      example: 0
+                    playerLimit:
+                      type: integer
+                      description: Maximum number of players that can be connected to the Dedicated Server
+                      example: 4
+                    techTier:
+                      type: integer
+                      description: Maximum Tech Tier of all Schematics currently unlocked
+                      example: 0
+                    activeSchematic:
+                      type: string
+                      description: Schematic currently set as Active Milestone
+                      example: None
+                    gamePhase:
+                      type: string
+                      description: Current game phase. None if no game is running
+                      example: None
+                    isGameRunning:
+                      type: boolean
+                      description: True if the save is currently loaded, false if the server is waiting for the session to be created
+                      example: false
+                    totalGameDuration:
+                      type: integer
+                      description: Total time the current save has been loaded, in seconds
+                      example: 0
+                    isGamePaused:
+                      type: boolean
+                      description: True if the game is paused. If the game is paused, total game duration does not increase
+                      example: false
+                    averageTickRate:
+                      type: number
+                      description: Average tick rate of the server, in ticks per second
+                      format: float
+                      example: 29.89044189453125
+                    autoLoadSessionName:
+                      type: string
+                      description: Name of the session that will be loaded when the server starts automatically
+                      example: SERVER-SESSION26924571
+                  required:
+                    - activeSessionName
+                    - numConnectedPlayers
+                    - playerLimit
+                    - techTier
+                    - activeSchematic
+                    - gamePhase
+                    - isGameRunning
+                    - totalGameDuration
+                    - isGamePaused
+                    - averageTickRate
+                    - autoLoadSessionName
+              required:
+                - serverGameState
+          required:
+            - data
+        - $ref: '#/components/schemas/error'
+    renameServerRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: RenameServer
+          default: RenameServer
+          example: RenameServer
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            serverName:
+              type: string
+              description: New name of the Dedicated Server
+              example: Not Test Server
+          required:
+            - serverName
+      required:
+        - function
+        - data
+    runCommandRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: RunCommand
+          default: RunCommand
+          example: RunCommand
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            command:
+              type: string
+              description: Command Line to run on the Dedicated Server
+          required:
+            - command
+      required:
+        - function
+        - data
+    shutdownRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: Shutdown
+          default: Shutdown
+          example: Shutdown
+      required:
+        - function
+    deleteSaveSessionRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: DeleteSaveSession
+          default: DeleteSaveSession
+          example: DeleteSaveSession
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            sessionName:
+              type: string
+              description: Name of the save session to delete
+              example: Test
+          required:
+            - sessionName
+      required:
+        - function
+        - data
+    getAdvancedGameSettingsRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: GetAdvancedGameSettings
+          default: GetAdvancedGameSettings
+          example: GetAdvancedGameSettings
+      required:
+        - function
+    getAdvancedGameSettingsResponse:
+      oneOf:
+        - type: object
+          title: success
+          properties:
+            data:
+              type: object
+              description: Data returned by the function executed. Type depends on the function the request performed
+              $ref: '#/components/schemas/advancedGameSettings'
+          required:
+            - data
+        - $ref: '#/components/schemas/error'
+    applyAdvancedGameSettingsRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: ApplyAdvancedGameSettings
+          default: ApplyAdvancedGameSettings
+          example: ApplyAdvancedGameSettings
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          $ref: '#/components/schemas/advancedGameSettings'
+      required:
+        - function
+        - data
+    saveGameRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: SaveGame
+          default: SaveGame
+          example: SaveGame
         data:
           type: object
           description: Data to pass to the function to execute. Format of the object depends on the function being executed
           properties:
             saveName:
               type: string
-              description: Name of the save game file to load
+              description: Name of the save game file to create. Passed name might be sanitized
               example: Test Save 1
-            enableAdvancedGameSettings:
-              type: boolean
-              description: True if save game file should be loaded with Advanced Game Settings enabled
-              example: false
           required:
             - saveName
-            - enableAdvancedGameSettings
+      required:
+        - function
+        - data
+    downloadSaveGameRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: DownloadSaveGame
+          default: DownloadSaveGame
+          example: DownloadSaveGame
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            saveName:
+              type: string
+              description: Name of the save game file to download from the Dedicated Server
+              example: Test Save 1
+          required:
+            - saveName
       required:
         - function
         - data
@@ -1582,22 +1620,49 @@ components:
       required:
         - data
         - saveGameFile
-    downloadSaveGameRequest:
+    loadGameRequest:
       type: object
       properties:
         function:
           type: string
           description: Name of the API function to execute.
-          const: DownloadSaveGame
-          default: DownloadSaveGame
-          example: DownloadSaveGame
+          const: LoadGame
+          default: LoadGame
+          example: LoadGame
         data:
           type: object
           description: Data to pass to the function to execute. Format of the object depends on the function being executed
           properties:
             saveName:
               type: string
-              description: Name of the save game file to download from the Dedicated Server
+              description: Name of the save game file to load
+              example: Test Save 1
+            enableAdvancedGameSettings:
+              type: boolean
+              description: True if save game file should be loaded with Advanced Game Settings enabled
+              example: false
+          required:
+            - saveName
+            - enableAdvancedGameSettings
+      required:
+        - function
+        - data
+    deleteSaveFileRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          description: Name of the API function to execute.
+          const: DeleteSaveFile
+          default: DeleteSaveFile
+          example: DeleteSaveFile
+        data:
+          type: object
+          description: Data to pass to the function to execute. Format of the object depends on the function being executed
+          properties:
+            saveName:
+              type: string
+              description: Name of the save game file to delete. Passed name might be sanitized
               example: Test Save 1
           required:
             - saveName

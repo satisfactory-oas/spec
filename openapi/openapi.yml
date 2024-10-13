@@ -19,20 +19,20 @@ components:
 
 tags:
 - name: Setup
-  description: Authorization
+  description: Functions typically ran shortly after a Game Server starts up for the first time
 - name: Authorization
-  description: Authorization
+  description: Anything related to API or Server access
 - name: Server
-  description: Server Status
+  description: Anything related to managing or adjusting the Server
 - name: Game
-  description: Game Settings
+  description: Anything related to the game running on the Server
 - name: Saves
-  description: Saves
+  description: Individual Save related management
 - name: Sessions
-  description: Sessions
+  description: Save Sessions related management
 paths:
 
-  # --- Setup
+  # --- Initialization
 
   # ClaimServer
   '/api/v1/?function=ClaimServer':

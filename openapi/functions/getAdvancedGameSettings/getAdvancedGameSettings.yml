@@ -4,7 +4,7 @@ post:
   description: |
     Retrieves currently applied advanced game settings. Does not require input parameters.
   tags:
-  - Game Settings
+  - Game
   security:
   - bearerAuth: []
   requestBody:

@@ -4,7 +4,7 @@ post:
   description: |
     Loads the save game file by name, optionally with Advanced Game Settings enabled. Requires Admin privileges. Dedicated Server HTTPS API will become temporarily unavailable when save game is being loaded. Function does not return any data on succcess.
   tags:
-  - Save Management
+  - Saves
   security:
   - bearerAuth: ['Administrator']
   requestBody:

@@ -22,16 +22,14 @@ tags:
   description: Authorization
 - name: Authorization
   description: Authorization
-- name: Server Status
+- name: Server
   description: Server Status
-- name: Server Actions
-  description: Save Management
-- name: Server Options
-  description: Server Options
-- name: Game Settings
+- name: Game
   description: Game Settings
-- name: Save Management
-  description: Save Management
+- name: Saves
+  description: Saves
+- name: Sessions
+  description: Sessions
 paths:
 
   # --- Setup
@@ -66,37 +64,18 @@ paths:
   '/api/v1/?function=VerifyAuthenticationToken':
     $ref: functions/verifyAuthenticationToken/verifyAuthenticationToken.yml
 
-  # --- Server Status
+  # --- Sessions
+  # - Placed here to keep a specific ordering in our generated documentation
+
+  # EnumerateSessions
+  '/api/v1/?function=EnumerateSessions':
+    $ref: functions/enumerateSessions/enumerateSessions.yml
+
+  # --- Server
 
   # HealthCheck
   '/api/v1/?function=HealthCheck':
     $ref: functions/healthCheck/healthCheck.yml
-
-  # QueryServerState
-  '/api/v1/?function=QueryServerState':
-    $ref: functions/queryServerState/queryServerState.yml
-
-  # --- Game Settings
-
-  # GetAdvancedGameSettings
-  '/api/v1/?function=GetAdvancedGameSettings':
-    $ref: functions/getAdvancedGameSettings/getAdvancedGameSettings.yml
-
-  # ApplyAdvancedGameSettings
-  '/api/v1/?function=ApplyAdvancedGameSettings':
-    $ref: functions/applyAdvancedGameSettings/applyAdvancedGameSettings.yml
-
-  # --- Server Actions
-
-  # RunCommand
-  '/api/v1/?function=RunCommand':
-    $ref: functions/runCommand/runCommand.yml
-
-  # Shutdown
-  '/api/v1/?function=Shutdown':
-    $ref: functions/shutdown/shutdown.yml
-
-  # --- Server Options
 
   # GetServerOptions
   '/api/v1/?function=GetServerOptions':
@@ -106,40 +85,61 @@ paths:
   '/api/v1/?function=ApplyServerOptions':
     $ref: functions/applyServerOptions/applyServerOptions.yml
 
-  # RenameServer
-  '/api/v1/?function=RenameServer':
-    $ref: functions/renameServer/renameServer.yml
-
-  # --- Save Management
-
   # SetAutoLoadSessionName
   '/api/v1/?function=SetAutoLoadSessionName':
     $ref: functions/setAutoLoadSessionName/setAutoLoadSessionName.yml
 
-  # SaveGame
-  '/api/v1/?function=SaveGame':
-    $ref: functions/saveGame/saveGame.yml
+  # QueryServerState
+  '/api/v1/?function=QueryServerState':
+    $ref: functions/queryServerState/queryServerState.yml
 
-  # DeleteSaveFile
-  '/api/v1/?function=DeleteSaveFile':
-    $ref: functions/deleteSaveFile/deleteSaveFile.yml
+  # RenameServer
+  '/api/v1/?function=RenameServer':
+    $ref: functions/renameServer/renameServer.yml
+
+  # RunCommand
+  '/api/v1/?function=RunCommand':
+    $ref: functions/runCommand/runCommand.yml
+
+  # Shutdown
+  '/api/v1/?function=Shutdown':
+    $ref: functions/shutdown/shutdown.yml
+
+  # --- Sessions
+  # - Placed here to keep a specific ordering in our generated documentation
 
   # DeleteSaveSession
   '/api/v1/?function=DeleteSaveSession':
     $ref: functions/deleteSaveSession/deleteSaveSession.yml
 
-  # EnumerateSessions
-  '/api/v1/?function=EnumerateSessions':
-    $ref: functions/enumerateSessions/enumerateSessions.yml
+  # --- Game
 
-  # LoadGame
-  '/api/v1/?function=LoadGame':
-    $ref: functions/loadGame/loadGame.yml
+  # GetAdvancedGameSettings
+  '/api/v1/?function=GetAdvancedGameSettings':
+    $ref: functions/getAdvancedGameSettings/getAdvancedGameSettings.yml
+
+  # ApplyAdvancedGameSettings
+  '/api/v1/?function=ApplyAdvancedGameSettings':
+    $ref: functions/applyAdvancedGameSettings/applyAdvancedGameSettings.yml
+
+  # --- Saves
+
+  # SaveGame
+  '/api/v1/?function=SaveGame':
+    $ref: functions/saveGame/saveGame.yml
+
+  # DownloadSaveGame
+  '/api/v1/?function=DownloadSaveGame':
+    $ref: functions/downloadSaveGame/downloadSaveGame.yml
 
   # UploadSaveGame
   '/api/v1/?function=UploadSaveGame':
     $ref: functions/uploadSaveGame/uploadSaveGame.yml
 
-  # DownloadSaveGame
-  '/api/v1/?function=DownloadSaveGame':
-    $ref: functions/downloadSaveGame/downloadSaveGame.yml
+  # LoadGame
+  '/api/v1/?function=LoadGame':
+    $ref: functions/loadGame/loadGame.yml
+
+  # DeleteSaveFile
+  '/api/v1/?function=DeleteSaveFile':
+    $ref: functions/deleteSaveFile/deleteSaveFile.yml

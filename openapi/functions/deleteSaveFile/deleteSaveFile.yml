@@ -4,7 +4,7 @@ post:
   description: |
     Deletes the existing save game file from the server. Requires Admin privileges. SaveName might be changed to satisfy file system restrictions on file names. Function does not return any data on success.
   tags:
-  - Save Management
+  - Saves
   security:
   - bearerAuth: ['Administrator']
   requestBody:

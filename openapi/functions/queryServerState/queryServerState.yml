@@ -4,7 +4,7 @@ post:
   description: |
     Retrieves the current state of the Dedicated Server. Does not require any input parameters.
   tags:
-  - Server Status
+  - Server
   security:
   - bearerAuth: []
   requestBody:

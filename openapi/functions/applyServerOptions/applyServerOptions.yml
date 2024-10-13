@@ -4,7 +4,7 @@ post:
   description: |
     Applies new Server Options to the Dedicated Server. Requires Admin privileges.
   tags:
-  - Server Options
+  - Server
   security:
   - bearerAuth: ['Administrator']
   requestBody:

@@ -4,7 +4,7 @@ post:
   description: |
     Deletes all save files belonging to the specific session name. Requires Admin privileges. SessionName must be a valid session name with at least one saved save game file belonging to it. Function does not return any data on success.
   tags:
-  - Save Management
+  - Sessions
   security:
   - bearerAuth: ['Administrator']
   requestBody:

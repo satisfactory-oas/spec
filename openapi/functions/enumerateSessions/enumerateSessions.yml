@@ -4,7 +4,7 @@ post:
   description: |
     Enumerates all save game files available on the Dedicated Server. Requires Admin privileges. Function does not require any additional parameters.
   tags:
-  - Save Management
+  - Sessions
   security:
   - bearerAuth: ['Administrator']
   requestBody:
